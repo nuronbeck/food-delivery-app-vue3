@@ -8,7 +8,7 @@ import AppFooter from "@/components/Layout/AppFooter.vue";
 import BaseAlert from "@/components/Base/BaseAlert.vue";
 
 export default {
-  install(app: App) {
+  install(app: App): void {
     // Register global components here
     app.component("BaseAlert", BaseAlert);
     app.component("AppHeader", AppHeader);
