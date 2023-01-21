@@ -1,9 +1,7 @@
-<script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
-</script>
-
 <template>
   <main>
-    <TheWelcome />
+    <BaseAlert variant="secondary" message="BaseAlert Message" />
   </main>
 </template>
+
+<script setup lang="ts"></script>
