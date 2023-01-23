@@ -1,7 +1,7 @@
 <template>
   <main>
     <BaseAlert variant="secondary" message="BaseAlert Message" />
-    <BaseButton variant="danger">dsdsdbutton</BaseButton>
+    <BaseButton variant="danger">sasasasasasa</BaseButton>
   </main>
 </template>
 

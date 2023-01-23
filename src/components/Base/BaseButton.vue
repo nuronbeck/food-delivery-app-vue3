@@ -1,8 +1,7 @@
 <template>
-  <button
-    :class="classnames($style.btn, $style[variant])"
-    :disabled="disabled"
-  ></button>
+  <button :class="classnames($style.btn, $style[variant])" :disabled="disabled">
+    <slot />
+  </button>
 </template>
 
 <script setup lang="ts">
