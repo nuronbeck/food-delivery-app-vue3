@@ -1,12 +1,16 @@
 <template>
-  <button :class="classnames($style.btn, $style[variant])" :disabled="disabled">
+  <button
+    :class="classnames($style.btn, $style[variant])"
+    :disabled="disabled"
+    @click="handleButtonClick"
+  >
     <slot />
   </button>
 </template>
 
 <script setup lang="ts">
 import classnames from "classnames";
-import { defineProps, withDefaults, onMounted } from "vue";
+import { defineProps, defineEmits, withDefaults } from "vue";
 
 export interface IBaseButton {
   disabled?: boolean;
@@ -18,14 +22,18 @@ export interface IBaseButton {
     | "none";
 }
 
+const emit = defineEmits<{
+  (e: "on-click"): void;
+}>();
+
 withDefaults(defineProps<IBaseButton>(), {
   disabled: false,
   variant: "primary",
 });
 
-onMounted(() => {
-  console.log("onMounted");
-});
+const handleButtonClick = () => {
+  emit("on-click");
+};
 </script>
 
 <style module lang="scss">
