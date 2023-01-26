@@ -5,6 +5,7 @@
       >sasasasasasa</BaseButton
     >
     <BaseSpinner variant="secondary" />
+    <font-awesome-icon icon="fa-eye" />
   </main>
 </template>
 
