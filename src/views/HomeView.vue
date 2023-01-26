@@ -4,6 +4,7 @@
     <BaseButton variant="danger" @on-click="handleButtonClick"
       >sasasasasasa</BaseButton
     >
+    <BaseSpinner variant="secondary" />
   </main>
 </template>
 
