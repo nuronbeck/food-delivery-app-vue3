@@ -13,4 +13,14 @@ import { RouterView } from "vue-router";
   max-width: $breakpoint-lg;
   padding: 0 15px;
 }
+
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+main.page-content {
+  flex: 1 1 auto;
+  padding: 15px 0;
+}
 </style>

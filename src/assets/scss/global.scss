@@ -2,3 +2,7 @@
 @forward './colors';
 @forward './fonts';
 @forward './breakpoints';
+ 
+html, body, #app {
+  height: -webkit-fill-available;
+}

@@ -1,29 +1,29 @@
 <template>
-  <BaseButton variant="primary" />
   <header :class="$style.header">
     <div class="container">
       <div :class="$style.wrapper">
         <div :class="$style.logo">
-          <router-link to="/">
+          <RouterLink to="/">
             <img src="@/assets/header/main_logo.svg" />
-          </router-link>
+          </RouterLink>
         </div>
+
         <div :class="$style.menu">
-          <router-link
+          <RouterLink
             v-if="isLoggedIn"
             :class="$style.link"
             to="/my-orders"
             active-class="active"
           >
             My orders
-          </router-link>
+          </RouterLink>
 
-          <router-link v-if="isLoggedIn" :class="$style.card" to="/cart">
+          <RouterLink v-if="isLoggedIn" :class="$style.card" to="/cart">
             <img src="@/assets/header/cart.svg" />
             <span :class="$style.counter">4</span>
-          </router-link>
+          </RouterLink>
 
-          <router-link
+          <RouterLink
             v-if="isLoggedIn"
             :class="$style.profileLink"
             to="/profile"
@@ -33,11 +33,12 @@
               :class="$style.profileImage"
               src="@/assets/profile/blank-profile-picture.jpg"
             />
-          </router-link>
+          </RouterLink>
 
           <BaseButton v-if="!isLoggedIn" variant="primary" @click="footrClick">
             Login
           </BaseButton>
+
           <img :class="$style.icon" src="@/assets/header/menu.svg" />
         </div>
       </div>
@@ -46,6 +47,7 @@
 </template>
 
 <script setup lang="ts">
+import { RouterLink } from "vue-router";
 import { ref } from "vue";
 
 const isLoggedIn = ref<boolean>(false);
@@ -79,12 +81,11 @@ const emit = defineEmits<{
 
 <style module lang="scss">
 .header {
+  display: flex;
+  align-items: center;
   height: 80px;
   background-color: $color-white;
   border-bottom: 1px solid $color-primary-light;
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
 }
 
 .wrapper {
@@ -177,8 +178,6 @@ const emit = defineEmits<{
 
 // =========Mobile breakpoint==========
 @include breakpoint("md") {
-  .header {
-  }
   .menu {
     position: relative;
     justify-content: end;

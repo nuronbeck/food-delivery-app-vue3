@@ -1,17 +1,19 @@
 <template>
-  <div :class="$style.page">
-    <h1>This is an about page</h1>
+  <main class="page-content">
+    <div class="container">
+      <h1>This is an about page</h1>
 
-    <div :class="$style.cardsContainer">
-      <div :class="$style.card"></div>
-      <div :class="$style.card"></div>
-      <div :class="$style.card"></div>
-      <div :class="$style.card"></div>
-      <div :class="$style.card"></div>
-      <div :class="$style.card"></div>
-      <div :class="$style.card"></div>
+      <div :class="$style.cardsContainer">
+        <div :class="$style.card"></div>
+        <div :class="$style.card"></div>
+        <div :class="$style.card"></div>
+        <div :class="$style.card"></div>
+        <div :class="$style.card"></div>
+        <div :class="$style.card"></div>
+        <div :class="$style.card"></div>
+      </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <style module lang="scss">
@@ -37,11 +39,5 @@
   @include breakpoint("xl") {
     grid-template-columns: repeat(4, 1fr);
   }
-}
-
-.page {
-  min-height: 100vh;
-  background-color: $color-white;
-  transition: background-color 0.5s linear;
 }
 </style>

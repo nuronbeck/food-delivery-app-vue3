@@ -1,22 +1,33 @@
 <template>
-  <main>
-    <AppHeader />
-    <BaseAlert variant="secondary" message="BaseAlert Message" />
-    <BaseButton variant="danger" @on-click="handleButtonClick"
-      >sasasasasasa</BaseButton
-    >
-    <BaseSpinner variant="secondary" />
-    <font-awesome-icon icon="fa-eye" />
-    <BaseCheckbox label="dhsadasjd" @onChange="toggleCheckbox" />
+  <main class="page-content">
+    <div class="container">
+      <BaseCheckbox
+        label="Subscribe to emails"
+        :checked="isChecked"
+        @on-change="toggleCheckbox"
+      />
+
+      <BaseButton @on-click="showClasses">Show result</BaseButton>
+    </div>
   </main>
 </template>
 
 <script setup lang="ts">
-const handleButtonClick = () => {
-  console.log("Button clicked from parent");
-};
+import classnames from "classnames";
+import { ref } from "vue";
+const isChecked = ref(false);
 
 const toggleCheckbox = () => {
-  console.log("checkbox clicked ");
+  isChecked.value = !isChecked.value;
+};
+
+const showClasses = () => {
+  const moduleClass = "module-class";
+
+  const result = classnames("class1", "class2", {
+    [moduleClass]: isChecked.value,
+  });
+
+  console.log(result);
 };
 </script>

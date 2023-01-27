@@ -2,7 +2,7 @@
   <div :class="$style.wrapper">
     <div
       :class="
-        classnames($style['checkbox'], {
+        classnames($style.checkbox, {
           [$style.isChecked]: checked,
         })
       "
@@ -32,11 +32,11 @@ withDefaults(defineProps<IBaseCheckbox>(), {
 });
 
 const emit = defineEmits<{
-  (e: "onChange"): void;
+  (e: "on-change"): void;
 }>();
 
 const toggleCheckbox = () => {
-  emit("onChange");
+  emit("on-change");
 };
 </script>
 
@@ -54,6 +54,7 @@ const toggleCheckbox = () => {
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.1px;
+  user-select: none;
 }
 
 .icon {
