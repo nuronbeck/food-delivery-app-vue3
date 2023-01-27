@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 import classnames from "classnames";
-import { defineProps, withDefaults, onMounted } from "vue";
+import { withDefaults } from "vue";
 
 export interface IBaseAlert {
   message: string;
@@ -16,10 +16,6 @@ export interface IBaseAlert {
 withDefaults(defineProps<IBaseAlert>(), {
   message: "",
   variant: "primary",
-});
-
-onMounted(() => {
-  console.log("onMounted");
 });
 </script>
 

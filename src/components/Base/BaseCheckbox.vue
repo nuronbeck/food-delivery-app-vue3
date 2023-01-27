@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import classnames from "classnames";
-import { defineProps, defineEmits, withDefaults } from "vue";
+import { withDefaults } from "vue";
 
 export interface IBaseCheckbox {
   label?: string;

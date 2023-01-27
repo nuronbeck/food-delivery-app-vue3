@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import classNames from "classnames";
-import { defineProps, withDefaults } from "vue";
+import { withDefaults } from "vue";
 
 export interface IBaseSpinner {
   type: string;
