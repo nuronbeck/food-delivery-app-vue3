@@ -1,5 +1,6 @@
 <template>
   <main>
+    <AppHeader />
     <BaseAlert variant="secondary" message="BaseAlert Message" />
     <BaseButton variant="danger" @on-click="handleButtonClick"
       >sasasasasasa</BaseButton
