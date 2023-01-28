@@ -6,6 +6,7 @@
     >
     <BaseSpinner variant="secondary" />
     <font-awesome-icon icon="fa-eye" />
+    <BaseInput />
   </main>
 </template>
 

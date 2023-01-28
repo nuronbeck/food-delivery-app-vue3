@@ -8,6 +8,7 @@ import AppFooter from "@/components/Layout/AppFooter.vue";
 import BaseAlert from "@/components/Base/BaseAlert.vue";
 import BaseButton from "@/components/Base/BaseButton.vue";
 import BaseSpinner from "@/components/Base/BaseSpinner.vue";
+import BaseInput from "@/components/Base/BaseInput.vue";
 
 // Fontawesome icons
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -33,6 +34,7 @@ export default {
     app.component("BaseAlert", BaseAlert);
     app.component("BaseButton", BaseButton);
     app.component("BaseSpinner", BaseSpinner);
+    app.component("BaseInput", BaseInput);
 
     app.component("AppHeader", AppHeader);
     app.component("AppFooter", AppFooter);
