@@ -59,7 +59,7 @@ const toggleCheckbox = () => {
 
 .icon {
   color: $color-white;
-  display: none;
+  // display: none;
 }
 
 .checkbox {
@@ -74,9 +74,9 @@ const toggleCheckbox = () => {
 .isChecked {
   background-color: $color-primary;
   border: 2px solid $color-primary;
-  &.icon {
-    display: block;
-  }
+  // &.icon {
+  //   display: block;
+  // }
 }
 
 .label,
