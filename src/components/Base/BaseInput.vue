@@ -2,7 +2,7 @@
   <div :class="$style.baseInput">
     <label :class="$style.label" for="email">{{ label }}</label>
 
-    <div :class="`wrapper ${!!error ? 'has-error' : ''}`">
+    <div :class="classnames($style.wrapper, { [$style.hasError]: !!error })">
       <input
         :class="$style.input"
         :value="value"
@@ -41,16 +41,16 @@
 
 <script setup lang="ts">
 import classnames from "classnames";
-import { defineProps, defineEmits, withDefaults } from "vue";
+import { withDefaults } from "vue";
 
 export interface IBaseInput {
-  label?: string;
-  value?: string;
-  placeholder?: string;
-  type?: string;
-  showPassword?: boolean;
-  disabled?: boolean;
-  error?: string;
+  label: string;
+  value: string;
+  placeholder: string;
+  type: string;
+  showPassword: boolean;
+  disabled: boolean;
+  error: string;
 }
 
 withDefaults(defineProps<IBaseInput>(), {
@@ -100,12 +100,21 @@ const handleInputChange = () => {
   border-radius: 8px;
   box-sizing: border-box;
   overflow: hidden;
+  &:hover {
+    border: 1px solid $color-grey;
+    border-radius: 8px;
+  }
+  &:has(input:focus) {
+    border: 1px solid $color-primary;
+    border-radius: 8px;
+  }
 }
-.has-error {
+
+.hasError {
   border: 1px solid $color-error;
 }
 .input {
-  color: $color-grey;
+  color: $color-dark;
   width: 100%;
   height: 44px;
   border: none;
@@ -116,11 +125,6 @@ const handleInputChange = () => {
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
-
-  &:focus {
-    border: 1px solid $color-primary;
-    border-radius: 8px;
-  }
 
   &:disabled {
     color: $color-grey !important;
