@@ -43,6 +43,7 @@ const toggleCheckbox = () => {
 <style module lang="scss">
 .wrapper {
   display: grid;
+  align-items: center;
   grid-template-columns: auto 1fr;
   gap: 0 12px;
 }
