@@ -3,6 +3,7 @@ import BaseAlert from "@/components/Base/BaseAlert.vue";
 import BaseButton from "@/components/Base/BaseButton.vue";
 import BaseSpinner from "@/components/Base/BaseSpinner.vue";
 import BaseCheckbox from "@/components/Base/BaseCheckbox.vue";
+import BaseInput from "@/components/Base/BaseInput.vue";
 
 // Layout components
 import AppHeader from "@/components/Layout/AppHeader.vue";
@@ -15,6 +16,7 @@ declare module "@vue/runtime-core" {
     BaseButton: typeof BaseButton;
     BaseSpinner: typeof BaseSpinner;
     BaseCheckbox: typeof BaseCheckbox;
+    BaseInput: typeof BaseInput;
 
     // Layout components
     AppHeader: typeof AppHeader;
