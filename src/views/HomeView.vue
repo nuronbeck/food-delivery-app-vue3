@@ -6,7 +6,6 @@
         :checked="isChecked"
         @on-change="toggleCheckbox"
       />
-      <CategoryCardSkeleton />
       <!-- =====BaseInput====== -->
       <BaseInput label="Email" type="email" placeholder="name@example.com" />
 
