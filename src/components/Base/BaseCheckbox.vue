@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.wrapper">
-    <div
+    <div tabIndex="0"
       :class="
         classnames($style.checkbox, {
           [$style.isChecked]: checked,
@@ -71,6 +71,9 @@ const toggleCheckbox = () => {
   justify-content: center;
   border: 2px solid $color-grey-light;
   border-radius: 4px;
+  &:focus-visible{
+    border: 2px solid $color-primary;
+  }
 }
 .isChecked {
   background-color: $color-primary;
