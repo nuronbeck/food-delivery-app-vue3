@@ -1,51 +1,53 @@
 <template>
   <main class="page-content">
     <div class="container">
-      <BaseCheckbox
-        label="Subscribe to emails"
-        :checked="isChecked"
-        @on-change="toggleCheckbox"
-      />
-
-      <!-- =====BaseInput====== -->
-      <BaseInput label="Email" type="email" placeholder="name@example.com" />
+      <BaseAlert variant="primary" :message="`Email: ${formData.email}`" />
+      <br />
+      <BaseAlert variant="danger" :message="`Password: ${formData.password}`" />
+      <br />
 
       <BaseInput
-        class="login__baseInput"
-        label="Password"
-        type="password"
-        :showPassword="showPassword"
-        error="salom"
-        placeholder="min.8 characters"
-        @onPasswordToggle="showPasswordClick"
+        label="Email"
+        type="email"
+        placeholder="name@example.com"
+        :value="formData.email"
+        @on-input="(newValue) => changeField('email', newValue)"
       />
 
-      <BaseButton @on-click="showClasses">Show result</BaseButton>
+      <BaseInput
+        label="Password"
+        type="password"
+        placeholder="min.8 characters"
+        :value="formData.password"
+        :showPassword="showPassword"
+        @on-input="(newValue) => changeField('password', newValue)"
+        @on-password-toggle="toggleShowPassword"
+      />
+
+      <BaseButton @on-click="submit">Submit</BaseButton>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import classnames from "classnames";
 import { ref } from "vue";
-const isChecked = ref(false);
 const showPassword = ref(false);
 
-const toggleCheckbox = () => {
-  isChecked.value = !isChecked.value;
+const formData = ref({
+  email: "",
+  password: "",
+});
+
+const changeField = (propertyName: "email" | "password", value: string) => {
+  formData.value[propertyName] = value;
 };
 
-const showPasswordClick = () => {
+const toggleShowPassword = () => {
   showPassword.value = !showPassword.value;
 };
 
-const showClasses = () => {
-  const moduleClass = "module-class";
-
-  const result = classnames("class1", "class2", {
-    [moduleClass]: isChecked.value,
-  });
-
-  console.log(result);
+const submit = () => {
+  console.log("email", formData.value.email);
+  console.log("password", formData.value.password);
 };
 </script>

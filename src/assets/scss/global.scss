@@ -6,3 +6,7 @@
 html, body, #app {
   height: -webkit-fill-available;
 }
+
+* {
+  box-sizing: border-box;
+}

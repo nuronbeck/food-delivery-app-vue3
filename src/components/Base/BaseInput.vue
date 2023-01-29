@@ -46,34 +46,33 @@ import { withDefaults } from "vue";
 export interface IBaseInput {
   label: string;
   value: string;
-  placeholder: string;
-  type: string;
-  showPassword: boolean;
-  disabled: boolean;
-  error: string;
+  placeholder?: string;
+  type?: string;
+  showPassword?: boolean;
+  disabled?: boolean;
+  error?: string;
 }
 
 withDefaults(defineProps<IBaseInput>(), {
-  label: "",
-  value: "",
   placeholder: "",
-  type: "",
+  type: "text",
   showPassword: false,
   disabled: false,
   error: "",
 });
 
 const emit = defineEmits<{
-  (e: "onPasswordToggle"): void;
-  (e: "onInput"): void;
+  (e: "on-password-toggle"): void;
+  (e: "on-input", newValue: string): void;
 }>();
 
 const togglePasswordShow = () => {
-  emit("onPasswordToggle");
+  emit("on-password-toggle");
 };
 
-const handleInputChange = () => {
-  emit("onInput");
+const handleInputChange = (e: Event) => {
+  const target = e.target as HTMLInputElement;
+  emit("on-input", target.value);
 };
 </script>
 
