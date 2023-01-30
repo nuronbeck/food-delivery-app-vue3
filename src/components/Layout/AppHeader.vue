@@ -81,7 +81,6 @@ const emit = defineEmits<{
 
 <style module lang="scss">
 .header {
-  flex: 1 1 auto;
   display: flex;
   align-items: center;
   background-color: $color-white;
