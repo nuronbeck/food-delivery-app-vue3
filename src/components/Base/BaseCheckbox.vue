@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.wrapper">
-    <div
+    <div tabIndex="0"
       :class="
         classnames($style.checkbox, {
           [$style.isChecked]: checked,
@@ -43,6 +43,7 @@ const toggleCheckbox = () => {
 <style module lang="scss">
 .wrapper {
   display: grid;
+  align-items: center;
   grid-template-columns: auto 1fr;
   gap: 0 12px;
 }
@@ -59,7 +60,7 @@ const toggleCheckbox = () => {
 
 .icon {
   color: $color-white;
-  display: none;
+  // display: none;
 }
 
 .checkbox {
@@ -70,13 +71,16 @@ const toggleCheckbox = () => {
   justify-content: center;
   border: 2px solid $color-grey-light;
   border-radius: 4px;
+  &:focus-visible{
+    border: 2px solid $color-primary;
+  }
 }
 .isChecked {
   background-color: $color-primary;
   border: 2px solid $color-primary;
-  &.icon {
-    display: block;
-  }
+  // &.icon {
+  //   display: block;
+  // }
 }
 
 .label,
