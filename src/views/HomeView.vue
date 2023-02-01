@@ -1,5 +1,16 @@
 <template>
   <main class="page-content">
+    <!-- ========Deals page========== -->
+    <div class="deals__list">
+      <DealCard
+        v-for="(dealCard, index) in dealsList"
+        :key="`dealCard__${index}`"
+        :variant="dealCard.variant"
+        :title="dealCard.title"
+        :offer="dealCard.offer"
+        :tag="dealCard.tag"
+      />
+    </div>
     <div class="container">
       <BaseAlert variant="primary" :message="`Email: ${formData.email}`" />
       <br />
@@ -30,6 +41,9 @@
 </template>
 
 <script setup lang="ts">
+// import dealsList from "@/data/dealsList";
+// import client from "@/api";
+
 import { ref } from "vue";
 const showPassword = ref(false);
 
