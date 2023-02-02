@@ -42,16 +42,16 @@ withDefaults(defineProps<IDealCard>(), {
   align-items: center;
   background: $color-primary-light;
   border-radius: 16px;
+
   @include breakpoint("xs") {
     flex-direction: column-reverse;
   }
-  @include breakpoint("sm") {
-    flex-direction: column-reverse;
-  }
+
   @include breakpoint("md") {
     flex-direction: row;
   }
 }
+
 .primary {
   background-color: $color-primary-light;
 }
@@ -84,16 +84,19 @@ withDefaults(defineProps<IDealCard>(), {
 
 .content {
   padding: 16px 34px 16px 0;
+
   @include breakpoint("xs") {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
     padding: 20px;
   }
+
   @include breakpoint("md") {
     flex-direction: column;
   }
 }
+
 .title {
   font-family: $base-font;
   font-weight: 600;

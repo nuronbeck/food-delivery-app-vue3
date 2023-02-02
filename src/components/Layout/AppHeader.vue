@@ -83,7 +83,7 @@ const emit = defineEmits<{
 .header {
   display: flex;
   align-items: center;
-  height: 80px;
+  min-height: 80px;
   background-color: $color-white;
   border-bottom: 1px solid $color-primary-light;
 }
