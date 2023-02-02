@@ -3,7 +3,7 @@
     <div class="container">
       <div :class="$style.dealsList">
         <DealCard
-          v-for="(dealCard, index) in dealsData"
+          v-for="(dealCard, index) in dealsList"
           :key="`dealCard__${index}`"
           :variant="dealCard.variant"
           :title="dealCard.title"
@@ -44,7 +44,6 @@
 import dealsList from "@/data/dealList";
 import { ref } from "vue";
 
-const dealsData = ref(dealsList);
 const showPassword = ref(false);
 
 const formData = ref({
