@@ -1,12 +1,25 @@
-@forward "./reset";
-@forward './colors';
-@forward './fonts';
-@forward './breakpoints';
- 
-html, body, #app {
+html, body {
   height: -webkit-fill-available;
 }
 
 * {
   box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  max-width: $breakpoint-lg;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: -webkit-fill-available;
+}
+
+main.page-content {
+  flex: 1 1 auto;
+  padding: 15px 0;
 }
