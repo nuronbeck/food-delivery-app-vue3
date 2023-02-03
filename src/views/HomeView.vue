@@ -11,12 +11,42 @@
           :tag="dealCard.tag"
         />
       </div>
+
+      <div :class="$style.categoryList">
+        <CategoryCard
+          v-for="(categoryCard, index) in categoryList"
+          :key="`categoryCard__${index}`"
+          :title="categoryCard.name"
+          :image="categoryCard.image"
+          :selected="categoryCard.id === selectedCategory"
+          @onClick="() => clickCategory(categoryCard)"
+        />
+      </div>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 import dealsList from "@/data/dealList";
+import client from "../api";
+
+const categoryList = ref([]);
+const selectedCategory = ref(null);
+
+client.get("/api/categories").then(({ data: { data = [] } = {} }) => {
+  categoryList.value = data;
+});
+
+const clickCategory = (categoryObject) => {
+  const { id } = categoryObject;
+
+  if (selectedCategory.value === id) {
+    selectedCategory.value = null;
+  } else {
+    selectedCategory.value = id;
+  }
+};
 </script>
 
 <style module lang="scss">
@@ -28,6 +58,17 @@ import dealsList from "@/data/dealList";
 
   @include breakpoint("md") {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.categoryList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-bottom: 40px;
+
+  @include breakpoint("md") {
+    grid-template-columns: repeat(6, 1fr);
   }
 }
 </style>
