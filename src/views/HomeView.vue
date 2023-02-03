@@ -1,6 +1,11 @@
 <template>
   <main class="page-content">
-    <div class="container">
+    <div class="container" v-if="isLoading">
+      <div :class="$style.dealsList">Loading categories</div>
+      <div :class="$style.categoryList">Loading products</div>
+    </div>
+
+    <div class="container" v-else>
       <div :class="$style.dealsList">
         <DealCard
           v-for="(dealCard, index) in dealsList"
@@ -21,22 +26,127 @@
           :selected="categoryCard.id === selectedCategory"
         />
       </div>
+      <div>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum libero
+        optio quisquam maiores, eum autem repudiandae rem unde, saepe doloribus
+        error sunt excepturi corrupti nam dolorem voluptas soluta assumenda
+        quam! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum
+        libero optio quisquam maiores, eum autem repudiandae rem unde, saepe
+        doloribus error sunt excepturi corrupti nam dolorem voluptas soluta
+        assumenda quam! Lorem ipsum dolor sit, amet consectetur adipisicing
+        elit. Earum libero optio quisquam maiores, eum autem repudiandae rem
+        unde, saepe doloribus error sunt excepturi corrupti nam dolorem voluptas
+        soluta assumenda quam! Lorem ipsum dolor sit, amet consectetur
+        adipisicing elit. Earum libero optio quisquam maiores, eum autem
+        repudiandae rem unde, saepe doloribus error sunt excepturi corrupti nam
+        dolorem voluptas soluta assumenda quam! Lorem ipsum dolor sit, amet
+        consectetur adipisicing elit. Earum libero optio quisquam maiores, eum
+        autem repudiandae rem unde, saepe doloribus error sunt excepturi
+        corrupti nam dolorem voluptas soluta assumenda quam! Lorem ipsum dolor
+        sit, amet consectetur adipisicing elit. Earum libero optio quisquam
+        maiores, eum autem repudiandae rem unde, saepe doloribus error sunt
+        excepturi corrupti nam dolorem voluptas soluta assumenda quam! Lorem
+        ipsum dolor sit, amet consectetur adipisicing elit. Earum libero optio
+        quisquam maiores, eum autem repudiandae rem unde, saepe doloribus error
+        sunt excepturi corrupti nam dolorem voluptas soluta assumenda quam!
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum libero
+        optio quisquam maiores, eum autem repudiandae rem unde, saepe doloribus
+        error sunt excepturi corrupti nam dolorem voluptas soluta assumenda
+        quam! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum
+        libero optio quisquam maiores, eum autem repudiandae rem unde, saepe
+        doloribus error sunt excepturi corrupti nam dolorem voluptas soluta
+        assumenda quam! Lorem ipsum dolor sit, amet consectetur adipisicing
+        elit. Earum libero optio quisquam maiores, eum autem repudiandae rem
+        unde, saepe doloribus error sunt excepturi corrupti nam dolorem voluptas
+        soluta assumenda quam! Lorem ipsum dolor sit, amet consectetur
+        adipisicing elit. Earum libero optio quisquam maiores, eum autem
+        repudiandae rem unde, saepe doloribus error sunt excepturi corrupti nam
+        dolorem voluptas soluta assumenda quam! Lorem ipsum dolor sit, amet
+        consectetur adipisicing elit. Earum libero optio quisquam maiores, eum
+        autem repudiandae rem unde, saepe doloribus error sunt excepturi
+        corrupti nam dolorem voluptas soluta assumenda quam! Lorem ipsum dolor
+        sit, amet consectetur adipisicing elit. Earum libero optio quisquam
+        maiores, eum autem repudiandae rem unde, saepe doloribus error sunt
+        excepturi corrupti nam dolorem voluptas soluta assumenda quam! Lorem
+        ipsum dolor sit, amet consectetur adipisicing elit. Earum libero optio
+        quisquam maiores, eum autem repudiandae rem unde, saepe doloribus error
+        sunt excepturi corrupti nam dolorem voluptas soluta assumenda quam!
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum libero
+        optio quisquam maiores, eum autem repudiandae rem unde, saepe doloribus
+        error sunt excepturi corrupti nam dolorem voluptas soluta assumenda
+        quam! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum
+        libero optio quisquam maiores, eum autem repudiandae rem unde, saepe
+        doloribus error sunt excepturi corrupti nam dolorem voluptas soluta
+        assumenda quam! Lorem ipsum dolor sit, amet consectetur adipisicing
+        elit. Earum libero optio quisquam maiores, eum autem repudiandae rem
+        unde, saepe doloribus error sunt excepturi corrupti nam dolorem voluptas
+        soluta assumenda quam! Lorem ipsum dolor sit, amet consectetur
+        adipisicing elit. Earum libero optio quisquam maiores, eum autem
+        repudiandae rem unde, saepe doloribus error sunt excepturi corrupti nam
+        dolorem voluptas soluta assumenda quam! Lorem ipsum dolor sit, amet
+        consectetur adipisicing elit. Earum libero optio quisquam maiores, eum
+        autem repudiandae rem unde, saepe doloribus error sunt excepturi
+        corrupti nam dolorem voluptas soluta assumenda quam! Lorem ipsum dolor
+        sit, amet consectetur adipisicing elit. Earum libero optio quisquam
+        maiores, eum autem repudiandae rem unde, saepe doloribus error sunt
+        excepturi corrupti nam dolorem voluptas soluta assumenda quam! Lorem
+        ipsum dolor sit, amet consectetur adipisicing elit. Earum libero optio
+        quisquam maiores, eum autem repudiandae rem unde, saepe doloribus error
+        sunt excepturi corrupti nam dolorem voluptas soluta assumenda quam!
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum libero
+        optio quisquam maiores, eum autem repudiandae rem unde, saepe doloribus
+        error sunt excepturi corrupti nam dolorem voluptas soluta assumenda
+        quam! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum
+        libero optio quisquam maiores, eum autem repudiandae rem unde, saepe
+        doloribus error sunt excepturi corrupti nam dolorem voluptas soluta
+        assumenda quam! Lorem ipsum dolor sit, amet consectetur adipisicing
+        elit. Earum libero optio quisquam maiores, eum autem repudiandae rem
+        unde, saepe doloribus error sunt excepturi corrupti nam dolorem voluptas
+        soluta assumenda quam! Lorem ipsum dolor sit, amet consectetur
+        adipisicing elit. Earum libero optio quisquam maiores, eum autem
+        repudiandae rem unde, saepe doloribus error sunt excepturi corrupti nam
+        dolorem voluptas soluta assumenda quam! Lorem ipsum dolor sit, amet
+        consectetur adipisicing elit. Earum libero optio quisquam maiores, eum
+        autem repudiandae rem unde, saepe doloribus error sunt excepturi
+        corrupti nam dolorem voluptas soluta assumenda quam! Lorem ipsum dolor
+        sit, amet consectetur adipisicing elit. Earum libero optio quisquam
+        maiores, eum autem repudiandae rem unde, saepe doloribus error sunt
+        excepturi corrupti nam dolorem voluptas soluta assumenda quam!
+      </div>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import dealsList from "@/data/dealList";
-import client from "@/api";
-import type { IProductCategory } from "@/types";
+import API from "@/api/API";
+import type { IProduct, IProductCategory } from "@/types";
 
+const isLoading = ref<boolean>(false);
+const selectedCategory = ref<string | null>(null);
 const categoryList = ref<IProductCategory[]>([]);
-const selectedCategory = ref(null);
+const productsList = ref<IProduct[]>([]);
 
-client.get("/api/categories").then(({ data: { data = [] } = {} }) => {
-  categoryList.value = data as IProductCategory[];
+onMounted(async () => {
+  isLoading.value = true;
+
+  const categoriesPromise = API.getCategories();
+  const productsPromise = API.getProducts();
+
+  await Promise.all([categoriesPromise, productsPromise]).then(
+    ([categories, products]) => {
+      categoryList.value = categories;
+      productsList.value = products;
+    }
+  );
+
+  isLoading.value = false;
 });
+
+// const selectCategory = ({ id }: IProductCategory) => {
+//   selectedCategory.value = selectedCategory.value !== id ? id : null;
+// };
 </script>
 
 <style module lang="scss">

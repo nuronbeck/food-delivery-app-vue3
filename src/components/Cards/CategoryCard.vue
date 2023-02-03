@@ -5,7 +5,6 @@
     @click.prevent="handleClick"
   >
     <img :class="$style.categoryImg" :src="image" />
-
     <div :class="$style.categoryName">{{ title }}</div>
   </a>
 </template>
@@ -35,7 +34,7 @@ const handleClick = () => {
 
 <style module lang="scss">
 .category {
-  border: 2px solid $color-grey-lightest;
+  outline: 2px solid $color-grey-lightest;
   border-radius: 16px;
   background: $color-white;
   text-align: center;
@@ -43,8 +42,12 @@ const handleClick = () => {
 
   &:hover {
     cursor: pointer;
-    border: 1px solid $color-primary;
+    outline: 2px solid $color-primary;
     background-color: $color-grey-lightest;
+  }
+
+  &:focus-visible {
+    outline: 1px solid $color-primary;
   }
 }
 
@@ -63,6 +66,15 @@ const handleClick = () => {
 }
 
 .isSelected {
-  border: 2px solid $color-primary;
+  outline: 2px solid $color-primary;
+
+  &:hover {
+    outline: 2px solid $color-primary;
+    background-color: unset;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+  }
 }
 </style>
