@@ -19,7 +19,6 @@
           :title="categoryCard.name"
           :image="categoryCard.image"
           :selected="categoryCard.id === selectedCategory"
-          @onClick="() => clickCategory(categoryCard)"
         />
       </div>
     </div>
@@ -29,25 +28,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import dealsList from "@/data/dealList";
-import client from "../api";
+import client from "@/api";
 import type { IProductCategory } from "@/types";
 
-const categoryList = ref([]);
+const categoryList = ref<IProductCategory[]>([]);
 const selectedCategory = ref(null);
 
-client.get("/api/categories").then(({ IProductCategory: { IProductCategory[] } = {} }) => {
-  categoryList.value = data;
+client.get("/api/categories").then(({ data: { data = [] } = {} }) => {
+  categoryList.value = data as IProductCategory[];
 });
-
-const clickCategory = (categoryObject) => {
-  const { id } = categoryObject;
-
-  if (selectedCategory.value === id) {
-    selectedCategory.value = null;
-  } else {
-    selectedCategory.value = id;
-  }
-};
 </script>
 
 <style module lang="scss">
