@@ -4,6 +4,7 @@ import type { App } from "vue";
 import AppHeader from "@/components/Layout/AppHeader.vue";
 import AppFooter from "@/components/Layout/AppFooter.vue";
 import DealCard from "@/components/Cards/DealCard.vue";
+import CategoryCard from "@/components/Cards/CategoryCard.vue";
 
 // Base components
 import BaseAlert from "@/components/Base/BaseAlert.vue";
@@ -42,5 +43,6 @@ export default {
     app.component("AppHeader", AppHeader);
     app.component("AppFooter", AppFooter);
     app.component("DealCard", DealCard);
+    app.component("CategoryCard", CategoryCard);
   },
 };
