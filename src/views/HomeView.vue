@@ -30,11 +30,12 @@
 import { ref } from "vue";
 import dealsList from "@/data/dealList";
 import client from "../api";
+import type { IProductCategory } from "@/types";
 
 const categoryList = ref([]);
 const selectedCategory = ref(null);
 
-client.get("/api/categories").then(({ data: { data = [] } = {} }) => {
+client.get("/api/categories").then(({ IProductCategory: { IProductCategory[] } = {} }) => {
   categoryList.value = data;
 });
 
