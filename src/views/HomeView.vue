@@ -26,92 +26,18 @@
           :selected="categoryCard.id === selectedCategory"
         />
       </div>
-      <div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum libero
-        optio quisquam maiores, eum autem repudiandae rem unde, saepe doloribus
-        error sunt excepturi corrupti nam dolorem voluptas soluta assumenda
-        quam! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum
-        libero optio quisquam maiores, eum autem repudiandae rem unde, saepe
-        doloribus error sunt excepturi corrupti nam dolorem voluptas soluta
-        assumenda quam! Lorem ipsum dolor sit, amet consectetur adipisicing
-        elit. Earum libero optio quisquam maiores, eum autem repudiandae rem
-        unde, saepe doloribus error sunt excepturi corrupti nam dolorem voluptas
-        soluta assumenda quam! Lorem ipsum dolor sit, amet consectetur
-        adipisicing elit. Earum libero optio quisquam maiores, eum autem
-        repudiandae rem unde, saepe doloribus error sunt excepturi corrupti nam
-        dolorem voluptas soluta assumenda quam! Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Earum libero optio quisquam maiores, eum
-        autem repudiandae rem unde, saepe doloribus error sunt excepturi
-        corrupti nam dolorem voluptas soluta assumenda quam! Lorem ipsum dolor
-        sit, amet consectetur adipisicing elit. Earum libero optio quisquam
-        maiores, eum autem repudiandae rem unde, saepe doloribus error sunt
-        excepturi corrupti nam dolorem voluptas soluta assumenda quam! Lorem
-        ipsum dolor sit, amet consectetur adipisicing elit. Earum libero optio
-        quisquam maiores, eum autem repudiandae rem unde, saepe doloribus error
-        sunt excepturi corrupti nam dolorem voluptas soluta assumenda quam!
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum libero
-        optio quisquam maiores, eum autem repudiandae rem unde, saepe doloribus
-        error sunt excepturi corrupti nam dolorem voluptas soluta assumenda
-        quam! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum
-        libero optio quisquam maiores, eum autem repudiandae rem unde, saepe
-        doloribus error sunt excepturi corrupti nam dolorem voluptas soluta
-        assumenda quam! Lorem ipsum dolor sit, amet consectetur adipisicing
-        elit. Earum libero optio quisquam maiores, eum autem repudiandae rem
-        unde, saepe doloribus error sunt excepturi corrupti nam dolorem voluptas
-        soluta assumenda quam! Lorem ipsum dolor sit, amet consectetur
-        adipisicing elit. Earum libero optio quisquam maiores, eum autem
-        repudiandae rem unde, saepe doloribus error sunt excepturi corrupti nam
-        dolorem voluptas soluta assumenda quam! Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Earum libero optio quisquam maiores, eum
-        autem repudiandae rem unde, saepe doloribus error sunt excepturi
-        corrupti nam dolorem voluptas soluta assumenda quam! Lorem ipsum dolor
-        sit, amet consectetur adipisicing elit. Earum libero optio quisquam
-        maiores, eum autem repudiandae rem unde, saepe doloribus error sunt
-        excepturi corrupti nam dolorem voluptas soluta assumenda quam! Lorem
-        ipsum dolor sit, amet consectetur adipisicing elit. Earum libero optio
-        quisquam maiores, eum autem repudiandae rem unde, saepe doloribus error
-        sunt excepturi corrupti nam dolorem voluptas soluta assumenda quam!
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum libero
-        optio quisquam maiores, eum autem repudiandae rem unde, saepe doloribus
-        error sunt excepturi corrupti nam dolorem voluptas soluta assumenda
-        quam! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum
-        libero optio quisquam maiores, eum autem repudiandae rem unde, saepe
-        doloribus error sunt excepturi corrupti nam dolorem voluptas soluta
-        assumenda quam! Lorem ipsum dolor sit, amet consectetur adipisicing
-        elit. Earum libero optio quisquam maiores, eum autem repudiandae rem
-        unde, saepe doloribus error sunt excepturi corrupti nam dolorem voluptas
-        soluta assumenda quam! Lorem ipsum dolor sit, amet consectetur
-        adipisicing elit. Earum libero optio quisquam maiores, eum autem
-        repudiandae rem unde, saepe doloribus error sunt excepturi corrupti nam
-        dolorem voluptas soluta assumenda quam! Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Earum libero optio quisquam maiores, eum
-        autem repudiandae rem unde, saepe doloribus error sunt excepturi
-        corrupti nam dolorem voluptas soluta assumenda quam! Lorem ipsum dolor
-        sit, amet consectetur adipisicing elit. Earum libero optio quisquam
-        maiores, eum autem repudiandae rem unde, saepe doloribus error sunt
-        excepturi corrupti nam dolorem voluptas soluta assumenda quam! Lorem
-        ipsum dolor sit, amet consectetur adipisicing elit. Earum libero optio
-        quisquam maiores, eum autem repudiandae rem unde, saepe doloribus error
-        sunt excepturi corrupti nam dolorem voluptas soluta assumenda quam!
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum libero
-        optio quisquam maiores, eum autem repudiandae rem unde, saepe doloribus
-        error sunt excepturi corrupti nam dolorem voluptas soluta assumenda
-        quam! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum
-        libero optio quisquam maiores, eum autem repudiandae rem unde, saepe
-        doloribus error sunt excepturi corrupti nam dolorem voluptas soluta
-        assumenda quam! Lorem ipsum dolor sit, amet consectetur adipisicing
-        elit. Earum libero optio quisquam maiores, eum autem repudiandae rem
-        unde, saepe doloribus error sunt excepturi corrupti nam dolorem voluptas
-        soluta assumenda quam! Lorem ipsum dolor sit, amet consectetur
-        adipisicing elit. Earum libero optio quisquam maiores, eum autem
-        repudiandae rem unde, saepe doloribus error sunt excepturi corrupti nam
-        dolorem voluptas soluta assumenda quam! Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Earum libero optio quisquam maiores, eum
-        autem repudiandae rem unde, saepe doloribus error sunt excepturi
-        corrupti nam dolorem voluptas soluta assumenda quam! Lorem ipsum dolor
-        sit, amet consectetur adipisicing elit. Earum libero optio quisquam
-        maiores, eum autem repudiandae rem unde, saepe doloribus error sunt
-        excepturi corrupti nam dolorem voluptas soluta assumenda quam!
+
+      <div :class="$style.productsList">
+        <ProductCard
+          v-for="product in productsList"
+          :key="`productCard__${product.id}`"
+          :image="product.image"
+          :featured="product.featured"
+          :title="product.name"
+          :deliveryTime="product.deliveryTime"
+          :minimalOrder="product.minimalOrder"
+          :categories="product.categories"
+        />
       </div>
     </div>
   </main>
@@ -169,6 +95,19 @@ onMounted(async () => {
 
   @include breakpoint("md") {
     grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.productsList {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 30px;
+  margin-bottom: 100px;
+  @include breakpoint("sm") {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include breakpoint("md") {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 </style>

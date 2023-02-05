@@ -10,6 +10,7 @@ import AppHeader from "@/components/Layout/AppHeader.vue";
 import AppFooter from "@/components/Layout/AppFooter.vue";
 import DealCard from "@/components/Cards/DealCard.vue";
 import CategoryCard from "@/components/Cards/CategoryCard.vue";
+import ProductCard from "@/components/Cards/ProductCard.vue";
 
 declare module "@vue/runtime-core" {
   export interface GlobalComponents {
@@ -25,5 +26,6 @@ declare module "@vue/runtime-core" {
     AppFooter: typeof AppFooter;
     DealCard: typeof DealCard;
     CategoryCard: typeof CategoryCard;
+    ProductCard: typeof ProductCard;
   }
 }

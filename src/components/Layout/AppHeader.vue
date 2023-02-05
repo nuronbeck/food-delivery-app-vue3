@@ -85,11 +85,13 @@ const emit = defineEmits<{
   top: 0;
   left: 0;
   right: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   min-height: 80px;
   background-color: $color-white;
   border-bottom: 1px solid $color-primary-light;
+  box-shadow: 0 0 10px rgba(168, 168, 168, 0.4);
 }
 
 .wrapper {
