@@ -7,6 +7,7 @@ export interface IProductCategory {
 export interface IProduct {
   id: string;
   name: string;
+  featured: string;
   image: string;
   deliveryTime: string;
   minimalOrder: string;

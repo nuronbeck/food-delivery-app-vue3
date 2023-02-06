@@ -6,6 +6,8 @@ const client = axios.create({
 
 client.interceptors.request.use(function (config) {
   config.headers["Content-Type"] = "application/json";
+  config.headers.Authorization =
+    localStorage.getItem("foodDeliveryAppToken") || undefined;
 
   return config;
 });
