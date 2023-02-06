@@ -5,7 +5,7 @@
         <img src="@/assets/header/main_logo.svg" />
       </router-link>
       <div>
-        <router-view></router-view>
+        <RouterView />
       </div>
     </div>
 

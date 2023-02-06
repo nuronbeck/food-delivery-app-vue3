@@ -29,38 +29,42 @@
 </template>
 
 <script setup lang="ts">
+import { Ref } from 'vue';
 export interface IForgotPasswordPage {
-  data() {
-    return {
-      isLoading: false,
-      formData: {
-        email: "",
-      },
-      errors: {
-        email: "",
-        password: "",
-      },
-    };
-  },
-  methods: {
-    changeField(propertyName, value) {
-      if (this.errors[propertyName] !== "") {
-        this.errors[propertyName] = "";
-      }
+  const formData = {
+    ref()
+  }
+  // data() {
+  //   return {
+  //     isLoading: false,
+  //     formData: {
+  //       email: "",
+  //     },
+  //     errors: {
+  //       email: "",
+  //       password: "",
+  //     },
+  //   };
+  // },
+  // methods: {
+  //   changeField(propertyName, value) {
+  //     if (this.errors[propertyName] !== "") {
+  //       this.errors[propertyName] = "";
+  //     }
 
-      this.formData[propertyName] = value;
-    },
-    reset() {
-      // console.log(this.formData);
-      this.isLoading = true;
+  //     this.formData[propertyName] = value;
+  //   },
+  //   reset() {
+  //     // console.log(this.formData);
+  //     this.isLoading = true;
 
-      setTimeout(() => {
-        this.errors.email = "* This email is not valid!";
+  //     setTimeout(() => {
+  //       this.errors.email = "* This email is not valid!";
 
-        this.isLoading = false;
-      }, 2500);
-    },
-  },
+  //       this.isLoading = false;
+  //     }, 2500);
+  //   },
+  // },
 };
 </script>
 

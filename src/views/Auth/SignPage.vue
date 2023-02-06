@@ -77,7 +77,6 @@
 import client from "../../api";
 
 export interface ISignPage {
-  name: "SignPage",
   data() {
     return {
       isLoading: false,
