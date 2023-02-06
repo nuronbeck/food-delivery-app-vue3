@@ -1,8 +1,28 @@
 <template>
   <main class="page-content">
     <div class="container" v-if="isLoading">
-      <div :class="$style.dealsList">Loading categories</div>
-      <div :class="$style.categoryList">Loading products</div>
+      <div :class="$style.dealsList">
+        <SkeletonShimmer :class="$style.dealsLoader" />
+        <SkeletonShimmer :class="$style.dealsLoader" />
+      </div>
+
+      <div :class="$style.categoryList">
+        <SkeletonShimmer :class="$style.categoryLoader" />
+        <SkeletonShimmer :class="$style.categoryLoader" />
+        <SkeletonShimmer :class="$style.categoryLoader" />
+        <SkeletonShimmer :class="$style.categoryLoader" />
+        <SkeletonShimmer :class="$style.categoryLoader" />
+        <SkeletonShimmer :class="$style.categoryLoader" />
+      </div>
+
+      <div :class="$style.productsList">
+        <SkeletonShimmer :class="$style.productLoader" />
+        <SkeletonShimmer :class="$style.productLoader" />
+        <SkeletonShimmer :class="$style.productLoader" />
+        <SkeletonShimmer :class="$style.productLoader" />
+        <SkeletonShimmer :class="$style.productLoader" />
+        <SkeletonShimmer :class="$style.productLoader" />
+      </div>
     </div>
 
     <div class="container" v-else>
@@ -23,110 +43,57 @@
           :key="`categoryCard__${index}`"
           :title="categoryCard.name"
           :image="categoryCard.image"
-          :selected="categoryCard.id === selectedCategory"
+          :selected="selectedCategories.includes(categoryCard.id)"
+          @on-click="() => selectCategory(categoryCard)"
         />
       </div>
-      <div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum libero
-        optio quisquam maiores, eum autem repudiandae rem unde, saepe doloribus
-        error sunt excepturi corrupti nam dolorem voluptas soluta assumenda
-        quam! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum
-        libero optio quisquam maiores, eum autem repudiandae rem unde, saepe
-        doloribus error sunt excepturi corrupti nam dolorem voluptas soluta
-        assumenda quam! Lorem ipsum dolor sit, amet consectetur adipisicing
-        elit. Earum libero optio quisquam maiores, eum autem repudiandae rem
-        unde, saepe doloribus error sunt excepturi corrupti nam dolorem voluptas
-        soluta assumenda quam! Lorem ipsum dolor sit, amet consectetur
-        adipisicing elit. Earum libero optio quisquam maiores, eum autem
-        repudiandae rem unde, saepe doloribus error sunt excepturi corrupti nam
-        dolorem voluptas soluta assumenda quam! Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Earum libero optio quisquam maiores, eum
-        autem repudiandae rem unde, saepe doloribus error sunt excepturi
-        corrupti nam dolorem voluptas soluta assumenda quam! Lorem ipsum dolor
-        sit, amet consectetur adipisicing elit. Earum libero optio quisquam
-        maiores, eum autem repudiandae rem unde, saepe doloribus error sunt
-        excepturi corrupti nam dolorem voluptas soluta assumenda quam! Lorem
-        ipsum dolor sit, amet consectetur adipisicing elit. Earum libero optio
-        quisquam maiores, eum autem repudiandae rem unde, saepe doloribus error
-        sunt excepturi corrupti nam dolorem voluptas soluta assumenda quam!
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum libero
-        optio quisquam maiores, eum autem repudiandae rem unde, saepe doloribus
-        error sunt excepturi corrupti nam dolorem voluptas soluta assumenda
-        quam! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum
-        libero optio quisquam maiores, eum autem repudiandae rem unde, saepe
-        doloribus error sunt excepturi corrupti nam dolorem voluptas soluta
-        assumenda quam! Lorem ipsum dolor sit, amet consectetur adipisicing
-        elit. Earum libero optio quisquam maiores, eum autem repudiandae rem
-        unde, saepe doloribus error sunt excepturi corrupti nam dolorem voluptas
-        soluta assumenda quam! Lorem ipsum dolor sit, amet consectetur
-        adipisicing elit. Earum libero optio quisquam maiores, eum autem
-        repudiandae rem unde, saepe doloribus error sunt excepturi corrupti nam
-        dolorem voluptas soluta assumenda quam! Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Earum libero optio quisquam maiores, eum
-        autem repudiandae rem unde, saepe doloribus error sunt excepturi
-        corrupti nam dolorem voluptas soluta assumenda quam! Lorem ipsum dolor
-        sit, amet consectetur adipisicing elit. Earum libero optio quisquam
-        maiores, eum autem repudiandae rem unde, saepe doloribus error sunt
-        excepturi corrupti nam dolorem voluptas soluta assumenda quam! Lorem
-        ipsum dolor sit, amet consectetur adipisicing elit. Earum libero optio
-        quisquam maiores, eum autem repudiandae rem unde, saepe doloribus error
-        sunt excepturi corrupti nam dolorem voluptas soluta assumenda quam!
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum libero
-        optio quisquam maiores, eum autem repudiandae rem unde, saepe doloribus
-        error sunt excepturi corrupti nam dolorem voluptas soluta assumenda
-        quam! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum
-        libero optio quisquam maiores, eum autem repudiandae rem unde, saepe
-        doloribus error sunt excepturi corrupti nam dolorem voluptas soluta
-        assumenda quam! Lorem ipsum dolor sit, amet consectetur adipisicing
-        elit. Earum libero optio quisquam maiores, eum autem repudiandae rem
-        unde, saepe doloribus error sunt excepturi corrupti nam dolorem voluptas
-        soluta assumenda quam! Lorem ipsum dolor sit, amet consectetur
-        adipisicing elit. Earum libero optio quisquam maiores, eum autem
-        repudiandae rem unde, saepe doloribus error sunt excepturi corrupti nam
-        dolorem voluptas soluta assumenda quam! Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Earum libero optio quisquam maiores, eum
-        autem repudiandae rem unde, saepe doloribus error sunt excepturi
-        corrupti nam dolorem voluptas soluta assumenda quam! Lorem ipsum dolor
-        sit, amet consectetur adipisicing elit. Earum libero optio quisquam
-        maiores, eum autem repudiandae rem unde, saepe doloribus error sunt
-        excepturi corrupti nam dolorem voluptas soluta assumenda quam! Lorem
-        ipsum dolor sit, amet consectetur adipisicing elit. Earum libero optio
-        quisquam maiores, eum autem repudiandae rem unde, saepe doloribus error
-        sunt excepturi corrupti nam dolorem voluptas soluta assumenda quam!
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum libero
-        optio quisquam maiores, eum autem repudiandae rem unde, saepe doloribus
-        error sunt excepturi corrupti nam dolorem voluptas soluta assumenda
-        quam! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum
-        libero optio quisquam maiores, eum autem repudiandae rem unde, saepe
-        doloribus error sunt excepturi corrupti nam dolorem voluptas soluta
-        assumenda quam! Lorem ipsum dolor sit, amet consectetur adipisicing
-        elit. Earum libero optio quisquam maiores, eum autem repudiandae rem
-        unde, saepe doloribus error sunt excepturi corrupti nam dolorem voluptas
-        soluta assumenda quam! Lorem ipsum dolor sit, amet consectetur
-        adipisicing elit. Earum libero optio quisquam maiores, eum autem
-        repudiandae rem unde, saepe doloribus error sunt excepturi corrupti nam
-        dolorem voluptas soluta assumenda quam! Lorem ipsum dolor sit, amet
-        consectetur adipisicing elit. Earum libero optio quisquam maiores, eum
-        autem repudiandae rem unde, saepe doloribus error sunt excepturi
-        corrupti nam dolorem voluptas soluta assumenda quam! Lorem ipsum dolor
-        sit, amet consectetur adipisicing elit. Earum libero optio quisquam
-        maiores, eum autem repudiandae rem unde, saepe doloribus error sunt
-        excepturi corrupti nam dolorem voluptas soluta assumenda quam!
+
+      <div :class="$style.productsList">
+        <ProductCard
+          v-for="product in filteredProductsList"
+          :key="`productCard__${product.id}`"
+          :image="product.image"
+          :featured="product.featured"
+          :title="product.name"
+          :deliveryTime="product.deliveryTime"
+          :minimalOrder="product.minimalOrder"
+          :categories="product.categories"
+        />
       </div>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import dealsList from "@/data/dealList";
 import API from "@/api/API";
 import type { IProduct, IProductCategory } from "@/types";
 
 const isLoading = ref<boolean>(false);
-const selectedCategory = ref<string | null>(null);
+const selectedCategories = ref<string[]>([]);
 const categoryList = ref<IProductCategory[]>([]);
 const productsList = ref<IProduct[]>([]);
+
+const filteredProductsList = computed(() => {
+  if (selectedCategories.value.length === 0) {
+    return productsList.value;
+  }
+
+  return productsList.value.filter((p) => {
+    return p.categories.filter((c) => selectedCategories.value.includes(c.id))
+      .length;
+  });
+});
+
+const selectCategory = ({ id }: IProductCategory) => {
+  if (selectedCategories.value.includes(id)) {
+    selectedCategories.value = selectedCategories.value.filter((i) => i !== id);
+    return;
+  }
+
+  selectedCategories.value = [...selectedCategories.value, id];
+};
 
 onMounted(async () => {
   isLoading.value = true;
@@ -143,10 +110,6 @@ onMounted(async () => {
 
   isLoading.value = false;
 });
-
-// const selectCategory = ({ id }: IProductCategory) => {
-//   selectedCategory.value = selectedCategory.value !== id ? id : null;
-// };
 </script>
 
 <style module lang="scss">
@@ -154,7 +117,7 @@ onMounted(async () => {
   grid-template-columns: 1fr;
   display: grid;
   gap: 30px;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 
   @include breakpoint("md") {
     grid-template-columns: repeat(2, 1fr);
@@ -165,10 +128,37 @@ onMounted(async () => {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 
   @include breakpoint("md") {
     grid-template-columns: repeat(6, 1fr);
   }
+}
+
+.productsList {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 30px;
+  margin-bottom: 30px;
+
+  @include breakpoint("sm") {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include breakpoint("md") {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Loaders
+.dealsLoader {
+  height: 216px;
+}
+
+.categoryLoader {
+  height: 80px;
+}
+
+.productLoader {
+  height: 276px;
 }
 </style>

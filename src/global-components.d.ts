@@ -10,6 +10,8 @@ import AppHeader from "@/components/Layout/AppHeader.vue";
 import AppFooter from "@/components/Layout/AppFooter.vue";
 import DealCard from "@/components/Cards/DealCard.vue";
 import CategoryCard from "@/components/Cards/CategoryCard.vue";
+import ProductCard from "@/components/Cards/ProductCard.vue";
+import SkeletonShimmerVue from "@/components/Loaders/SkeletonShimmer.vue";
 
 declare module "@vue/runtime-core" {
   export interface GlobalComponents {
@@ -23,7 +25,9 @@ declare module "@vue/runtime-core" {
     // Layout components
     AppHeader: typeof AppHeader;
     AppFooter: typeof AppFooter;
+    SkeletonShimmer: typeof SkeletonShimmerVue;
     DealCard: typeof DealCard;
     CategoryCard: typeof CategoryCard;
+    ProductCard: typeof ProductCard;
   }
 }
