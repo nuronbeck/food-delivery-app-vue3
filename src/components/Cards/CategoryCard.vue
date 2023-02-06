@@ -4,8 +4,8 @@
     :class="classnames($style.category, { [$style.isSelected]: selected })"
     @click.prevent="handleClick"
   >
-    <img :class="$style.categoryImg" :src="image" />
-    <div :class="$style.categoryName">{{ title }}</div>
+    <img :class="$style.image" :src="image" />
+    <div :class="$style.title">{{ title }}</div>
   </a>
 </template>
 
@@ -34,47 +34,50 @@ const handleClick = () => {
 
 <style module lang="scss">
 .category {
-  outline: 2px solid $color-grey-lightest;
-  border-radius: 16px;
-  background: $color-white;
   text-align: center;
   text-decoration: none;
+  background: $color-white;
+  border: 2px solid $color-grey-lightest;
+  border-radius: 16px;
+  padding: 12px;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  outline: none;
 
   &:hover {
     cursor: pointer;
-    outline: 2px solid $color-primary;
+    border: 2px solid $color-grey-light;
     background-color: $color-grey-lightest;
   }
 
   &:focus-visible {
-    outline: 1px solid $color-primary;
+    border: 2px solid $color-primary;
   }
 }
 
-.categoryImg {
-  padding: 12px 0;
+.image {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
 }
 
-.categoryName {
+.title {
+  color: $color-grey-dark;
   font-family: $base-font;
   font-size: 13px;
   font-weight: 700;
-  color: $color-grey-dark;
-  line-height: 18px;
-  letter-spacing: 0.1px;
-  padding: 0 0 12px 0;
 }
 
 .isSelected {
-  outline: 2px solid $color-primary;
+  background: mix($color-primary, $color-white, 10%);
+  border: 2px solid $color-primary;
 
   &:hover {
-    outline: 2px solid $color-primary;
-    background-color: unset;
+    border: 2px solid $color-primary;
+    background: mix($color-primary, $color-white, 10%);
   }
 
   &:focus-visible {
-    outline: 2px solid $color-primary;
+    border: 2px solid $color-primary;
   }
 }
 </style>

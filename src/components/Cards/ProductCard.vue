@@ -1,35 +1,42 @@
 <template>
-  <div :class="$style.product">
+  <div :class="$style.card">
+    <SkeletonShimmer v-if="isLoadingImage" :class="$style.imageLoader" />
+
     <div
-      :class="$style.productImage"
+      v-else-if="!isLoadingImage"
+      :class="$style.image"
       :style="{
         'background-image': 'url(' + image + ')',
       }"
     >
-      <span :class="$style.productFeatured"> featured </span>
+      <span :class="$style.featured"> featured </span>
     </div>
-    <div :class="$style.productBody">
-      <div>
-        <div :class="$style.productTitle">{{ title }}</div>
-        <div :class="$style.productCount">
+
+    <div :class="$style.body">
+      <div :class="$style.heading">
+        <div :class="$style.title">{{ title }}</div>
+
+        <button :class="$style.addCartBtn">
           <img src="@/assets/product/shopping.svg" />
-          <span :class="$style.productCounter">4</span>
-        </div>
+          <span :class="$style.counter">4</span>
+        </button>
       </div>
-      <div :class="$style.productText">
+
+      <div :class="$style.text">
         <img src="@/assets/product/clock.svg" />
-        <p>{{ deliveryTime }}</p>
-        <span :class="$style.productDot"></span>
-        <p>{{ minimalOrder }}</p>
+        <span>{{ deliveryTime }}</span>
+        <span :class="$style.dot"></span>
+        <span>{{ minimalOrder }}</span>
       </div>
-      <div :class="$style.productTags">
+
+      <div :class="$style.categories">
         <div
-          :class="$style.productTag"
-          v-for="tag in categories"
-          :key="`productTag__${tag}`"
+          :class="$style.category"
+          v-for="category in categories"
+          :key="`productCategory__${category.id}`"
         >
-          <img :src="tag.image" v-if="true" />
-          {{ tag.name }}
+          <img v-if="true" :src="category.image" />
+          <span>{{ category.name }}</span>
         </div>
       </div>
     </div>
@@ -37,39 +44,43 @@
 </template>
 
 <script setup lang="ts">
+import { useImage } from "@vueuse/core";
 import { withDefaults } from "vue";
+import type { IProductCategory } from "@/types";
 
 export interface IProductCard {
   image: string;
   title: string;
   deliveryTime: string;
   minimalOrder: string;
-  categories: {
-    id: string;
-    name: string;
-    image: string;
-  }[];
+  categories: IProductCategory[];
 }
 
-withDefaults(defineProps<IProductCard>(), {
+const props = withDefaults(defineProps<IProductCard>(), {
   image:
     "https://i.pinimg.com/originals/ae/8a/c2/ae8ac2fa217d23aadcc913989fcc34a2.png",
 });
+
+const { isLoading: isLoadingImage } = useImage({ src: props.image });
 </script>
 
 <style module lang="scss">
-.product {
+.card {
   border: 1px solid $color-grey-lightest;
   border-radius: 16px;
 }
-.productImage {
+.imageLoader {
+  height: 160px !important;
+}
+
+.image {
   position: relative;
   height: 160px;
   border-radius: 16px 16px 0 0;
   background-size: cover;
 }
 
-.productFeatured {
+.featured {
   position: absolute;
   top: 0;
   right: 0;
@@ -84,52 +95,34 @@ withDefaults(defineProps<IProductCard>(), {
   background-color: $color-primary;
 }
 
-.productBody {
+.body {
   padding: 16px;
-
-  div {
-    display: flex;
-    align-items: center;
-
-    &:nth-child(1) {
-      display: flex;
-      justify-content: space-between;
-    }
-  }
 }
 
-.productTitle {
+.heading {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+
+.title {
   color: $color-dark;
   font-family: $base-font;
   font-size: 18px;
   line-height: 24px;
-  margin-bottom: 6px;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
-.productCount {
-  position: relative;
-  cursor: pointer;
-  .productCounter {
-    color: $color-white;
-    position: absolute;
-    top: -12px;
-    right: 0;
-    font-family: $base-font;
-    font-size: 10px;
-    line-height: 1;
-    font-weight: bold;
-    background-color: $color-primary;
-    padding: 3px;
-    min-width: 14px;
-    text-align: center;
-    border-radius: 6px;
-  }
-}
-
-.productText {
+.text {
+  display: flex;
+  align-items: center;
   margin-bottom: 14px;
 
-  p {
+  span {
     color: $color-grey;
     font-family: $base-font;
     font-weight: 600;
@@ -139,23 +132,23 @@ withDefaults(defineProps<IProductCard>(), {
   }
 }
 
-.productDot {
-  width: 3px;
-  height: 3px;
-  background-color: $color-primary;
-  border-radius: 50%;
-  margin-left: 8px;
-}
-
-.productTags {
-  display: grid;
-  grid-template-columns: auto;
+.categories {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
   gap: 6px;
 }
 
-.productTag {
+.category {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  width: max-content;
   color: $color-grey-dark;
-  cursor: pointer;
   font-family: $base-font;
   font-weight: 600;
   font-size: 12px;
@@ -165,7 +158,52 @@ withDefaults(defineProps<IProductCard>(), {
   border-radius: 100px;
 
   img {
-    margin-right: 8px;
+    width: 12px;
+    height: 12px;
+    object-fit: cover;
   }
+}
+
+.addCartBtn {
+  all: unset;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+  }
+
+  &:focus-visible {
+    outline: 1px solid $color-primary;
+  }
+}
+
+.counter {
+  color: $color-white;
+  position: absolute;
+  top: -12px;
+  right: 0;
+  font-family: $base-font;
+  font-size: 10px;
+  line-height: 1;
+  font-weight: bold;
+  background-color: $color-primary;
+  padding: 3px;
+  min-width: 14px;
+  text-align: center;
+  border-radius: 6px;
+}
+
+.dot {
+  width: 3px;
+  height: 3px;
+  background-color: $color-primary;
+  border-radius: 50%;
+  margin-left: 8px;
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
   <button
+    :type="type"
     :class="classnames($style.btn, $style[variant])"
     :disabled="disabled"
     @click="handleButtonClick"
@@ -13,6 +14,7 @@ import classnames from "classnames";
 import { withDefaults } from "vue";
 
 export interface IBaseButton {
+  type?: "button" | "submit";
   disabled?: boolean;
   variant?:
     | "primary"
@@ -27,6 +29,7 @@ const emit = defineEmits<{
 }>();
 
 withDefaults(defineProps<IBaseButton>(), {
+  type: "button",
   disabled: false,
   variant: "primary",
 });

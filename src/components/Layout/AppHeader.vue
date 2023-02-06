@@ -1,5 +1,11 @@
 <template>
-  <header :class="$style.header">
+  <header
+    :class="
+      classnames($style.header, {
+        [$style.isElevated]: elevated,
+      })
+    "
+  >
     <div class="container">
       <div :class="$style.wrapper">
         <div :class="$style.logo">
@@ -35,7 +41,11 @@
             />
           </RouterLink>
 
-          <BaseButton v-if="!isLoggedIn" variant="primary" @click="footrClick">
+          <BaseButton
+            v-if="!isLoggedIn"
+            variant="primary"
+            @on-click="navigateLogin"
+          >
             Login
           </BaseButton>
 
@@ -47,36 +57,24 @@
 </template>
 
 <script setup lang="ts">
-import { RouterLink } from "vue-router";
-import { ref } from "vue";
+import classnames from "classnames";
+import { useAuthStore } from "@/stores/authStore";
+import { RouterLink, useRouter } from "vue-router";
 
-const isLoggedIn = ref<boolean>(false);
+export interface IAppHeader {
+  elevated?: boolean;
+}
 
-isLoggedIn.value = false;
+withDefaults(defineProps<IAppHeader>(), {
+  elevated: false,
+});
 
-const footrClick = () => {
-  console.log("Button clicked from parent");
+const router = useRouter();
+const { isLoggedIn } = useAuthStore();
+
+const navigateLogin = () => {
+  router.push("/about");
 };
-
-const emit = defineEmits<{
-  (e: "on-click"): void;
-}>();
-
-// import { mapGetters } from "vuex";
-
-// export default {
-// name: "AppHeader",
-// computed: {
-//   ...mapGetters({
-//     isLoggedIn: "auth/isAuth",
-//   }),
-// },
-// methods: {
-//   login() {
-//     this.$router.push("/auth/login");
-//   },
-// },
-// };
 </script>
 
 <style module lang="scss">
@@ -91,7 +89,11 @@ const emit = defineEmits<{
   min-height: 80px;
   background-color: $color-white;
   border-bottom: 1px solid $color-primary-light;
-  box-shadow: 0 0 10px rgba(168, 168, 168, 0.4);
+  transition: box-shadow 0.25s ease-in-out;
+
+  &.isElevated {
+    box-shadow: 0 0 10px rgba(168, 168, 168, 0.4);
+  }
 }
 
 .wrapper {
