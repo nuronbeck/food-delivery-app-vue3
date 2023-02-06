@@ -11,7 +11,7 @@ import AppFooter from "@/components/Layout/AppFooter.vue";
 import DealCard from "@/components/Cards/DealCard.vue";
 import CategoryCard from "@/components/Cards/CategoryCard.vue";
 import ProductCard from "@/components/Cards/ProductCard.vue";
-import SkeletonShimmerVue from "@/components/SkeletonShimmer.vue";
+import SkeletonShimmerVue from "@/components/Loaders/SkeletonShimmer.vue";
 
 declare module "@vue/runtime-core" {
   export interface GlobalComponents {

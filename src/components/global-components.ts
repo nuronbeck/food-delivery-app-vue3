@@ -9,7 +9,7 @@ import AppFooter from "@/components/Layout/AppFooter.vue";
 import DealCard from "@/components/Cards/DealCard.vue";
 import CategoryCard from "@/components/Cards/CategoryCard.vue";
 import ProductCard from "@/components/Cards/ProductCard.vue";
-import SkeletonShimmer from "@/components/SkeletonShimmer.vue";
+import SkeletonShimmer from "@/components/Loaders/SkeletonShimmer.vue";
 
 // Base components
 import BaseAlert from "@/components/Base/BaseAlert.vue";
