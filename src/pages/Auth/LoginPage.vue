@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.login">
-    <h1 :class="$style.name">Login</h1>
+    <h3>Login</h3>
 
     <BaseAlert
       v-if="!!serverError"
@@ -15,14 +15,15 @@
       variant="success"
       :message="serverSuccess"
     />
-    <!-- ========Base inputs========= -->
+
     <BaseInput
       label="Email"
       type="email"
       placeholder="name@example.com"
       :value="formData.email"
       :error="errors.email"
-      @onInput="(value) => changeField('email', value)"
+      :disabled="isLoading"
+      @on-input="(value) => changeField('email', value)"
     />
 
     <BaseInput
@@ -33,16 +34,16 @@
       :value="formData.password"
       :showPassword="showPassword"
       :error="errors.password"
+      :disabled="isLoading"
       @onPasswordToggle="showPasswordClick"
-      @onInput="(value) => changeField('password', value)"
+      @on-input="(value) => changeField('password', value)"
     />
 
-    <!-- ===========Base button========== -->
     <BaseButton
       variant="primary"
       :class="$style.baseBtn"
-      @onClick="login"
       :loading="isLoading"
+      @on-click="login"
     >
       Login
     </BaseButton>
@@ -52,7 +53,7 @@
     >
 
     <div :class="$style.text">
-      Don`t have an account?<RouterLink to="/auth/sign" :class="$style.link">
+      Don`t have an account?<RouterLink to="/auth/sign-up" :class="$style.link">
         Sign up</RouterLink
       >
     </div>
@@ -62,20 +63,25 @@
 <script setup lang="ts">
 import { useAuthStore } from "@/stores/authStore";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 export interface ILoginView {
   email: string;
   password: string;
 }
 
+const router = useRouter();
+const authStore = useAuthStore();
 const isLoading = ref<boolean>(false);
 const showPassword = ref(false);
 const serverError = ref("");
 const serverSuccess = ref("");
+
 const formData = ref({
   email: "",
   password: "",
 });
+
 const errors = ref({
   email: "",
   password: "",
@@ -91,12 +97,32 @@ const changeField = (propertyName: "email" | "password", value: string) => {
 
 const login = () => {
   isLoading.value = true;
+
+  authStore
+    .login({
+      email: formData.value.email,
+      password: formData.value.password,
+    })
+    .then(() => {
+      router.push("/profile");
+    })
+    .catch((error) => {
+      const serverError = error.response.data;
+
+      serverError.value = serverError.message;
+
+      if (serverError.errors.email) {
+        errors.value.email = serverError.errors.email;
+      }
+
+      if (serverError.errors.password) {
+        errors.value.password = serverError.errors.password;
+      }
+    })
+    .finally(() => {
+      isLoading.value = false;
+    });
 };
-
-const authStore = useAuthStore();
-
-authStore.login();
-isLoading.value = true;
 </script>
 
 <style module lang="scss">
@@ -110,15 +136,6 @@ isLoading.value = true;
 }
 .baseAlert {
   margin-bottom: 16px;
-}
-
-.name {
-  color: $color-dark;
-  font-size: 32px;
-  line-height: 82px;
-  font-family: $base-font;
-  font-weight: 700;
-  letter-spacing: 0.1px;
 }
 
 .baseInput {

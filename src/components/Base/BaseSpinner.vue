@@ -7,12 +7,10 @@ import classNames from "classnames";
 import { withDefaults } from "vue";
 
 export interface IBaseSpinner {
-  type: string;
   variant?: "white" | "primary" | "secondary";
 }
 
 withDefaults(defineProps<IBaseSpinner>(), {
-  type: "",
   variant: "primary",
 });
 </script>

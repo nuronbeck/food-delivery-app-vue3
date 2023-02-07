@@ -1,25 +1,26 @@
 <template>
   <div :class="$style.wrapper">
     <div :class="$style.auth">
-      <RouterLink to="/" :class="$style.authLogo">
+      <RouterLink to="/" :class="$style.logo">
         <img src="@/assets/header/main_logo.svg" />
       </RouterLink>
+
       <div>
         <RouterView />
       </div>
     </div>
 
-    <div :class="$style.authLayout">
-      <div :class="$style.authLayoutTitle">
-        <h2>Strengthen the Guci`an bond</h2>
+    <div :class="$style.layout">
+      <div :class="$style.title">
+        <h3 :class="$style.carouselTitle">Strengthen the Guci`an bond</h3>
       </div>
-      <div :class="$style.authLayoutText">
+      <div :class="$style.text">
         <p>
           Connecting Alumni and students of Government engineering college
           Idukki to a next level
         </p>
       </div>
-      <div :class="$style.swiperCircle">
+      <div :class="$style.circle">
         <span></span>
         <span></span>
         <span></span>
@@ -37,7 +38,7 @@
 .auth {
   position: relative;
 }
-.authLogo {
+.logo {
   img {
     margin: 15px 0 0 15px;
     @include breakpoint("md") {
@@ -45,7 +46,7 @@
     }
   }
 }
-.authLayout {
+.layout {
   background-color: $color-primary;
   display: none;
   flex-direction: column;
@@ -56,7 +57,7 @@
     display: flex;
   }
 }
-.authLayoutTitle {
+.title {
   font-family: $base-font;
   font-weight: 700;
   font-size: 32px;
@@ -65,7 +66,7 @@
   color: $color-white;
 }
 
-.authLayoutText {
+.text {
   font-family: $base-font;
   font-weight: 400;
   font-size: 14px;
@@ -75,7 +76,11 @@
   color: $color-white;
 }
 
-.swiperCircle {
+.carouselTitle {
+  color: $color-white;
+}
+
+.circle {
   display: flex;
   justify-content: center;
   margin-bottom: 60px;

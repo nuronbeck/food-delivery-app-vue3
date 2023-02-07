@@ -1,5 +1,5 @@
 import client from "@/api";
-import type { IProductCategory, IProduct } from "@/types";
+import type { IProductCategory, IProduct, ILoginPayload } from "@/types";
 
 export default {
   getAuth: () => {
@@ -7,8 +7,8 @@ export default {
       return response;
     });
   },
-  getLogin: () => {
-    return client.post("/api/auth/login").then((response: any) => {
+  login: (payload: ILoginPayload) => {
+    return client.post("/api/auth/login", payload).then((response: any) => {
       return response;
     });
   },

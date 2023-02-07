@@ -1,6 +1,7 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 import API from "@/api/API";
+import type { ILoginPayload } from "@/types";
 
 export const useAuthStore = defineStore("authStore", () => {
   const isLoggedIn = ref(false);
@@ -16,8 +17,8 @@ export const useAuthStore = defineStore("authStore", () => {
     });
   };
 
-  const login = () => {
-    return API.getLogin().then((response: any) => {
+  const login = (payload: ILoginPayload) => {
+    return API.login(payload).then((response: any) => {
       isLoggedIn.value = true;
 
       const token = response?.data?.token;

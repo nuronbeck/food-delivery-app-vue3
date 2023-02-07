@@ -1,5 +1,5 @@
+// @ts-nocheck
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
 import MainLayout from "@/layouts/MainLayout.vue";
 import AuthLayout from "@/layouts/AuthLayout.vue";
 
@@ -12,11 +12,7 @@ const router = createRouter({
       children: [
         {
           path: "",
-          component: HomeView,
-        },
-        {
-          path: "about",
-          component: () => import("../views/AboutView.vue"),
+          component: () => import("@/pages/HomePage.vue"),
         },
       ],
     },
@@ -25,8 +21,12 @@ const router = createRouter({
       component: AuthLayout,
       children: [
         {
-          path: "login",
-          component: () => import("@/views/Auth/LoginView.vue"),
+          path: "",
+          component: () => import("@/pages/Auth/LoginPage.vue"),
+        },
+        {
+          path: "sign-up",
+          component: () => import("@/pages/Auth/SignUpPage.vue"),
         },
       ],
     },
