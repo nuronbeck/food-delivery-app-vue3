@@ -16,10 +16,21 @@ export const useAuthStore = defineStore("authStore", () => {
     });
   };
 
+  const login = () => {
+    return API.getLogin().then((response: any) => {
+      isLoggedIn.value = true;
+
+      const token = response?.data?.token;
+      token && localStorage.setItem("foodDeliveryAppToken", token);
+
+      return response;
+    });
+  };
+
   const logout = () => {
     localStorage.removeItem("foodDeliveryAppToken");
     isLoggedIn.value = false;
   };
 
-  return { isLoggedIn, checkAuth, logout };
+  return { isLoggedIn, checkAuth, logout, login };
 });

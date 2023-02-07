@@ -7,6 +7,11 @@ export default {
       return response;
     });
   },
+  getLogin: () => {
+    return client.post("/api/auth/login").then((response: any) => {
+      return response;
+    });
+  },
   getCategories: () => {
     return client
       .get("/api/categories")
