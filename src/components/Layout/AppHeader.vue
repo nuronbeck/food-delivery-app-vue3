@@ -73,7 +73,7 @@ const router = useRouter();
 const { isLoggedIn } = useAuthStore();
 
 const navigateLogin = () => {
-  router.push("/about");
+  router.push("/auth");
 };
 </script>
 
@@ -152,26 +152,24 @@ const navigateLogin = () => {
   color: $color-white;
 }
 
-.profile-image {
-  min-width: 100%;
-  height: auto;
+.profileImage {
+  width: 46px;
+  height: 46px;
+  object-fit: cover;
 }
 
-.profile-link {
+.profileLink {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
-  min-width: 46px;
-  min-height: 46px;
   background-color: $color-grey-light;
   outline: 2px solid $color-white;
   border-radius: 16px;
   overflow: hidden;
   box-sizing: border-box;
 
-  &:hover {
+  &:hover,
+  &:focus {
     outline: 2px solid $color-primary;
   }
 

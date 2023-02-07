@@ -5,7 +5,8 @@
     :disabled="disabled"
     @click="handleButtonClick"
   >
-    <slot />
+    <BaseSpinner v-if="loading" variant="white" />
+    <slot v-else />
   </button>
 </template>
 
@@ -22,6 +23,7 @@ export interface IBaseButton {
     | "danger"
     | "danger-outline"
     | "none";
+  loading?: boolean;
 }
 
 const emit = defineEmits<{
@@ -32,6 +34,7 @@ withDefaults(defineProps<IBaseButton>(), {
   type: "button",
   disabled: false,
   variant: "primary",
+  loading: false,
 });
 
 const handleButtonClick = () => {

@@ -1,3 +1,8 @@
+export interface ILoginPayload {
+  email: string;
+  password: string;
+}
+
 export interface IProductCategory {
   id: string;
   name: string;
