@@ -1,10 +1,9 @@
 <template>
+  <RouterLink to="/" :class="$style.logo">
+    <img src="@/assets/header/main_logo.svg" />
+  </RouterLink>
   <div :class="$style.wrapper">
     <div :class="$style.auth">
-      <RouterLink to="/" :class="$style.logo">
-        <img src="@/assets/header/main_logo.svg" />
-      </RouterLink>
-
       <div>
         <RouterView />
       </div>
@@ -32,18 +31,30 @@
 
 <style module lang="scss">
 .wrapper {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  @include breakpoint("md") {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 .auth {
-  position: relative;
+  position: absolute;
+  width: 75%;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  @include breakpoint("md") {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px;
+  }
 }
 .logo {
   img {
-    margin: 15px 0 0 15px;
-    @include breakpoint("md") {
-      margin: 30px 0 0 30px;
-    }
+    position: absolute;
+    top: 20px;
+    left: 20px;
   }
 }
 .layout {

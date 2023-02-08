@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 import API from "@/api/API";
-import type { ILoginPayload } from "@/types";
+import type { ILoginPayload, IRegisterPayload } from "@/types";
 
 export const useAuthStore = defineStore("authStore", () => {
   const isLoggedIn = ref(false);
@@ -28,10 +28,21 @@ export const useAuthStore = defineStore("authStore", () => {
     });
   };
 
+  const register = (payload: IRegisterPayload) => {
+    return API.register(payload).then((response: any) => {
+      isLoggedIn.value = true;
+
+      const token = response?.data?.token;
+      token && localStorage.setItem("foodDeliveryAppToken", token);
+
+      return response;
+    });
+  };
+
   const logout = () => {
     localStorage.removeItem("foodDeliveryAppToken");
     isLoggedIn.value = false;
   };
 
-  return { isLoggedIn, checkAuth, logout, login };
+  return { isLoggedIn, checkAuth, logout, login, register };
 });

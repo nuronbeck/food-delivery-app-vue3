@@ -3,6 +3,14 @@ export interface ILoginPayload {
   password: string;
 }
 
+export interface IRegisterPayload {
+  lastName?: string;
+  firstName?: string;
+  email?: string;
+  phoneNumber?: string;
+  password?: string;
+}
+
 export interface IProductCategory {
   id: string;
   name: string;

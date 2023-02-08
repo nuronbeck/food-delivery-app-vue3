@@ -53,7 +53,7 @@
     >
 
     <div :class="$style.text">
-      Don`t have an account?<RouterLink to="/auth/sign-up" :class="$style.link">
+      Don`t have an account?<RouterLink to="/auth/sign-up" class="link">
         Sign up</RouterLink
       >
     </div>
@@ -103,7 +103,8 @@ const login = () => {
       email: formData.value.email,
       password: formData.value.password,
     })
-    .then(() => {
+    .then((response) => {
+      (serverError.value = ""), (serverSuccess.value = response.data.message);
       router.push("/profile");
     })
     .catch((error) => {
@@ -126,14 +127,6 @@ const login = () => {
 </script>
 
 <style module lang="scss">
-/* FORM*/
-.login {
-  width: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-}
 .baseAlert {
   margin-bottom: 16px;
 }
@@ -169,36 +162,4 @@ const login = () => {
   line-height: 20px;
   text-align: center;
 }
-
-.link {
-  font-size: 14px;
-  color: $color-primary;
-  text-decoration: none;
-}
-
-// @media screen and (max-width: 768px) {
-//   .login {
-//     transform: translateX(-50%) translateY(-40%);
-//     width: 95%;
-
-//     &__name {
-//       font-size: 60px;
-//     }
-
-//     &__text {
-//       display: block;
-//       color: $color-grey-dark;
-//       font-family: $base-font;
-//       font-weight: 400;
-//       font-size: 14px;
-//       margin-bottom: 45px;
-//       line-height: 20px;
-//       letter-spacing: 0.1px;
-//     }
-
-//     &__link {
-//       padding-bottom: 32px;
-//     }
-//   }
-// }
 </style>
