@@ -28,6 +28,10 @@ const router = createRouter({
           path: "sign-up",
           component: () => import("@/pages/Auth/SignUpPage.vue"),
         },
+        {
+          path: "forgot-password",
+          component: () => import("@/pages/Auth/ForgotPasswordPage.vue"),
+        },
       ],
     },
   ],

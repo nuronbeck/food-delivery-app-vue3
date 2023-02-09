@@ -8,7 +8,7 @@
       placeholder="name@example.com"
       :value="formData.email"
       :error="errors.email"
-      @onInput="(value) => changeField('email', value)"
+      @on-input="(value) => changeField('email', value)"
     />
 
     <div>
@@ -42,9 +42,9 @@ const errors = ref({
   password: "",
 });
 
-// const changeField = (propertyName: "email" | "password", value: string) => {
-//   formData.value[propertyName] = value;
-// };
+const changeField = (propertyName: "email", value: string) => {
+  formData.value[propertyName] = value;
+};
 
 const reset = () => {
   isLoading.value = true;
@@ -58,13 +58,6 @@ const reset = () => {
 </script>
 
 <style module lang="scss">
-.forgotPassword {
-  width: 50%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-}
 .name {
   color: $color-dark;
   font-size: 32px;
