@@ -11,6 +11,11 @@ export interface IRegisterPayload {
   password?: string;
 }
 
+export interface IResetPayload {
+  email: string;
+  password: string;
+}
+
 export interface IProductCategory {
   id: string;
   name: string;

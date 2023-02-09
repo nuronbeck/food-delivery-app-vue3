@@ -1,5 +1,5 @@
-<!-- <template>
-  <form class="forgotPassword" @submit.prevent>
+<template>
+  <form @submit.prevent>
     <h1>Reset password</h1>
 
     <BaseInput
@@ -14,18 +14,16 @@
     <div>
       <BaseButton
         variant="primary"
-        class="forgotPassword__baseBtn"
+        :class="$style.baseBtn"
         @onClick="reset"
         :loading="isLoading"
       >
         Reset
       </BaseButton>
     </div>
-    <p class="forgotPassword__text">
+    <p :class="$style.text">
       You already have account? Please
-      <router-link to="/auth/login" class="forgotPassword__link"
-        >Login</router-link
-      >
+      <RouterLink to="/auth/login" class="link">Login</RouterLink>
     </p>
   </form>
 </template>
@@ -33,10 +31,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-export interface IForgotPassword {
-  email: string;
-  password: string;
-}
+const isLoading = ref(false);
 
 const formData = ref({
   email: "",
@@ -47,8 +42,18 @@ const errors = ref({
   password: "",
 });
 
-const changeField = (propertyName: "email" | "password", value: string) => {
-  formData.value[propertyName] = value;
+// const changeField = (propertyName: "email" | "password", value: string) => {
+//   formData.value[propertyName] = value;
+// };
+
+const reset = () => {
+  isLoading.value = true;
+
+  setTimeout(() => {
+    errors.value.email = "* This email is not valid!";
+
+    isLoading.value = false;
+  }, 2500);
 };
 </script>
 
@@ -89,4 +94,4 @@ const changeField = (propertyName: "email" | "password", value: string) => {
     width: 95%;
   }
 }
-</style> -->
+</style>
