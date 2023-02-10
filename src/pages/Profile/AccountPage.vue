@@ -1,128 +1,162 @@
 <template>
-  <div class="page-content">
-    <div class="container">
-      <h3 :class="$style.name">Account</h3>
-      <div :class="$style.info">
-        <h2 :class="$style.title">Personal information</h2>
-        <p :class="$style.text">Avatar</p>
-        <div :class="$style.action">
-          <img
-            :class="$style.img"
-            src="@/assets/profile/blank-profile-picture.jpg"
+  <div>
+    <h3 :class="$style.name">Account</h3>
+    <div :class="$style.info">
+      <h2 :class="$style.title">Personal information</h2>
+      <p :class="$style.text">Avatar</p>
+      <div :class="$style.action">
+        <img
+          :class="$style.img"
+          src="@/assets/profile/blank-profile-picture.jpg"
+        />
+
+        <BaseButton
+          v-if="isEditing"
+          :class="$style.discardBtn"
+          @on-click="cancelEditing"
+        >
+          Cancel
+        </BaseButton>
+
+        <BaseButton
+          v-else
+          variant="primary-outline"
+          @on-click="isEditing = true"
+        >
+          Change
+        </BaseButton>
+      </div>
+
+      <div :class="$style.input">
+        <BaseInput
+          label="First name"
+          placeholder="Jane"
+          :value="formData.firstName"
+          :error="errors.firstName"
+          :disabled="!isEditing || isLoading"
+          @on-input="(value) => changeField('firstName', value)"
+        />
+
+        <BaseInput
+          label="Last name"
+          placeholder="Robertson"
+          :value="formData.lastName"
+          :error="errors.lastName"
+          :disabled="!isEditing || isLoading"
+          @on-input="(value) => changeField('lastName', value)"
+        />
+
+        <BaseInput
+          label="Email"
+          placeholder="jane.robertson@example.com"
+          :value="formData.email"
+          :error="errors.email"
+          :disabled="!isEditing || isLoading"
+          @on-input="(value) => changeField('email', value)"
+        />
+
+        <BaseInput
+          label="Phone number"
+          placeholder="+998 (99) 324-42-91"
+          :value="formData.phoneNumber"
+          :error="errors.phoneNumber"
+          :disabled="!isEditing || isLoading"
+          @on-input="(value) => changeField('phoneNumber', value)"
+        />
+      </div>
+
+      <div :class="$style.checkbox">
+        <h3 :class="$style.title">Email notifications</h3>
+        <div :class="$style.wrapper">
+          <BaseCheckbox
+            label="New deals"
+            :checked="formData.emailNotifications.newDeals"
+            @on-change="
+              () =>
+                changeSettingField(
+                  'newDeals',
+                  !formData.emailNotifications.newDeals
+                )
+            "
           />
 
+          <BaseCheckbox
+            label="New restaurants"
+            :checked="formData.emailNotifications.newRestaurants"
+            @on-change="
+              () =>
+                changeSettingField(
+                  'newRestaurants',
+                  !formData.emailNotifications.newRestaurants
+                )
+            "
+          />
+
+          <BaseCheckbox
+            label="Order statuses"
+            :checked="formData.emailNotifications.orderStatuses"
+            @on-change="
+              () =>
+                changeSettingField(
+                  'orderStatuses',
+                  !formData.emailNotifications.orderStatuses
+                )
+            "
+          />
+
+          <BaseCheckbox
+            label="Password changes"
+            :checked="formData.emailNotifications.passwordChanges"
+            @on-change="
+              () =>
+                changeSettingField(
+                  'passwordChanges',
+                  !formData.emailNotifications.passwordChanges
+                )
+            "
+          />
+          <BaseCheckbox
+            label="Special offers"
+            :checked="formData.emailNotifications.specialOffers"
+            @on-change="
+              () =>
+                changeSettingField(
+                  'specialOffers',
+                  !formData.emailNotifications.specialOffers
+                )
+            "
+          />
+          <BaseCheckbox
+            label="Newsletter"
+            :checked="formData.emailNotifications.newsLetter"
+            @on-change="
+              () =>
+                changeSettingField(
+                  'newsLetter',
+                  !formData.emailNotifications.newsLetter
+                )
+            "
+          />
+        </div>
+      </div>
+
+      <div :class="$style.divider"></div>
+
+      <div :class="$style.btns">
+        <BaseButton
+          :class="$style.dangerBtn"
+          variant="danger-outline"
+          @on-click="logout"
+          >Log out</BaseButton
+        >
+        <div>
           <BaseButton
             v-if="isEditing"
-            :class="$style.discardBtn"
-            @on-click="cancelEditing"
+            :class="$style.SaveBtn"
+            @on-click="saveChangeClick"
+            :loading="isLoading"
+            >Save changes</BaseButton
           >
-            Cancel
-          </BaseButton>
-
-          <BaseButton
-            v-else
-            variant="primary-outline"
-            @on-click="isEditing = true"
-          >
-            Change
-          </BaseButton>
-        </div>
-
-        <div :class="$style.input">
-          <BaseInput
-            label="First name"
-            placeholder="Jane"
-            :value="formData.firstName"
-            :error="errors.firstName"
-            :disabled="!isEditing || isLoading"
-            @on-input="(value) => changeField('firstName', value)"
-          />
-
-          <BaseInput
-            label="Last name"
-            placeholder="Robertson"
-            :value="formData.lastName"
-            :error="errors.lastName"
-            :disabled="!isEditing || isLoading"
-            @on-input="(value) => changeField('lastName', value)"
-          />
-
-          <BaseInput
-            label="Email"
-            placeholder="jane.robertson@example.com"
-            :value="formData.email"
-            :error="errors.email"
-            :disabled="!isEditing || isLoading"
-            @on-input="(value) => changeField('email', value)"
-          />
-
-          <BaseInput
-            label="Phone number"
-            placeholder="+998 (99) 324-42-91"
-            :value="formData.phoneNumber"
-            :error="errors.phoneNumber"
-            :disabled="!isEditing || isLoading"
-            @on-input="(value) => changeField('phoneNumber', value)"
-          />
-        </div>
-
-        <div :class="$style.checkbox">
-          <h3 :class="$style.title">Email notifications</h3>
-          <div :class="$style.wrapper">
-            <BaseCheckbox
-              label="New deals"
-              :checked="formData.emailNotifications.newDeals"
-              @on-change="(value) => changeField('newDeals', value)"
-            />
-
-            <BaseCheckbox
-              label="New restaurants"
-              :checked="formData.emailNotifications.newRestaurants"
-              @on-change="(value) => changeField('newRestaurants', value)"
-            />
-
-            <BaseCheckbox
-              label="Order statuses"
-              :checked="formData.emailNotifications.orderStatuses"
-              @on-change="(value) => changeField('orderStatuses', value)"
-            />
-
-            <BaseCheckbox
-              label="Password changes"
-              :checked="formData.emailNotifications.passwordChanges"
-              @on-change="(value) => changeField('passwordChanges', value)"
-            />
-            <BaseCheckbox
-              label="Special offers"
-              :checked="formData.emailNotifications.specialOffers"
-              @on-change="(value) => changeField('specialOffers', value)"
-            />
-            <BaseCheckbox
-              label="Newsletter"
-              :checked="formData.emailNotifications.newsLetter"
-              @on-change="(value) => changeField('newsLetter', value)"
-            />
-          </div>
-        </div>
-
-        <div :class="$style.divider"></div>
-
-        <div :class="$style.btns">
-          <BaseButton
-            :class="$style.dangerBtn"
-            variant="danger-outline"
-            @on-click="logout"
-            >Log out</BaseButton
-          >
-          <div>
-            <BaseButton
-              v-if="isEditing"
-              :class="$style.SaveBtn"
-              @on-click="saveChangeClick"
-              :loading="isLoading"
-              >Save changes</BaseButton
-            >
-          </div>
         </div>
       </div>
     </div>
@@ -146,11 +180,20 @@ const AuthStore = useAuthStore();
 const isLoading = ref<boolean>(false);
 const isEditing = ref(false);
 
-const formDate = ref({
+const formData = ref({
   firstName: "",
   lastName: "",
   email: "",
   phoneNumber: "",
+
+  emailNotifications: {
+    newDeals: false,
+    newRestaurants: false,
+    orderStatuses: false,
+    passwordChanges: false,
+    specialOffers: false,
+    newsLetter: false,
+  },
 });
 
 const errors = ref({
@@ -161,34 +204,45 @@ const errors = ref({
 });
 
 const initPage = () => {
-  formData.firstName = userData.firstName;
-  formData.lastName = userData.lastName;
-  formData.email = userData.email;
-  formData.phoneNumber = userData.phoneNumber;
+  // formData.value.firstName = userData.firstName;
+  // formData.value.lastName = userData.lastName;
+  // formData.value.email = userData.email;
+  // formData.value.phoneNumber = userData.phoneNumber;
 };
 
 const cancelEditing = () => {
-  (isEditing = false), initPage();
+  isEditing.value = false;
 };
 
 const changeField = (
   propertyName: "firstName" | "lastName" | "email" | "phoneNumber",
   value: string
 ) => {
-  formDate.value[propertyName] = value;
-  formData.emailNotifications.value[propertyName] = value;
+  formData.value[propertyName] = value;
+};
+
+const changeSettingField = (
+  propertyName:
+    | "newDeals"
+    | "newRestaurants"
+    | "orderStatuses"
+    | "passwordChanges"
+    | "specialOffers"
+    | "newsLetter",
+  value: boolean
+) => {
+  formData.value.emailNotifications[propertyName] = value;
 };
 
 const saveChangeClick = () => {
-  isLoading = true;
+  isLoading.value = true;
 
   setTimeout(() => {
-    isLoading = false;
-    isEditing = false;
+    isLoading.value = false;
   }, 2500);
 };
 const logout = () => {
-  logoutUser();
+  AuthStore.logout();
   router.push("/");
 };
 </script>

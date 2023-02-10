@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h3 :class="$style.name">Address</h3>
+    <h3 :class="$style.name">Security page</h3>
     <div :class="$style.info">
-      <h2 :class="$style.title">Shippings address</h2>
+      <h2 :class="$style.title">Security page</h2>
     </div>
   </div>
 </template>

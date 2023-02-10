@@ -24,17 +24,17 @@ const router = createRouter({
             },
             {
               path: "address",
-              component: () => import("../pages/Profile/AccountPage.vue"),
+              component: () => import("../pages/Profile/AddressPage.vue"),
             },
             {
               path: "payment-methods",
-              component: () => import("../pages/Profile/AccountPage.vue"),
+              component: () => import("../pages/Profile/PaymentPage.vue"),
             },
             {
               path: "security",
-              component: () => import("../pages/Profile/AccountPage.vue"),
+              component: () => import("../pages/Profile/SecurityPage.vue"),
             },
-          ]
+          ],
         },
       ],
     },
