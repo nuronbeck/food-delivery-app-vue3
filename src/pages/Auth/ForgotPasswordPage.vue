@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 
 const isLoading = ref(false);
 
@@ -37,20 +37,24 @@ const formData = ref({
   email: "",
 });
 
-const errors = ref({
+const errors = reactive({
   email: "",
   password: "",
 });
 
 const changeField = (propertyName: "email", value: string) => {
   formData.value[propertyName] = value;
+
+  if (errors[propertyName]) {
+    errors[propertyName] = "";
+  }
 };
 
 const reset = () => {
   isLoading.value = true;
 
   setTimeout(() => {
-    errors.value.email = "* This email is not valid!";
+    errors.email = "* This email is not valid!";
 
     isLoading.value = false;
   }, 2500);

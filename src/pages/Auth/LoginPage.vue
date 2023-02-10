@@ -3,17 +3,17 @@
     <h3>Login</h3>
 
     <BaseAlert
-      v-if="!!serverError"
+      v-if="!!serverError.message"
       :class="$style.baseAlert"
       variant="danger"
-      :message="serverError"
+      :message="serverError.message"
     />
 
     <BaseAlert
-      v-if="!!serverSuccess"
+      v-if="!!serverSuccess.message"
       :class="$style.baseAlert"
       variant="success"
-      :message="serverSuccess"
+      :message="serverSuccess.message"
     />
 
     <BaseInput
@@ -62,7 +62,7 @@
 
 <script setup lang="ts">
 import { useAuthStore } from "@/stores/authStore";
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 
 export interface ILoginView {
@@ -74,15 +74,19 @@ const router = useRouter();
 const authStore = useAuthStore();
 const isLoading = ref<boolean>(false);
 const showPassword = ref(false);
-const serverError = ref("");
-const serverSuccess = ref("");
+const serverError = reactive({
+  message: "",
+});
+const serverSuccess = reactive({
+  message: "",
+});
 
 const formData = ref({
   email: "",
   password: "",
 });
 
-const errors = ref({
+const errors = reactive({
   email: "",
   password: "",
 });
@@ -93,6 +97,10 @@ const showPasswordClick = () => {
 
 const changeField = (propertyName: "email" | "password", value: string) => {
   formData.value[propertyName] = value;
+
+  if (errors[propertyName]) {
+    errors[propertyName] = "";
+  }
 };
 
 const login = () => {
@@ -104,20 +112,20 @@ const login = () => {
       password: formData.value.password,
     })
     .then((response) => {
-      (serverError.value = ""), (serverSuccess.value = response.data.message);
+      serverError.message = "";
+      serverSuccess.message = response.data.message;
       router.push("/profile");
     })
     .catch((error) => {
-      const serverError = error.response.data;
+      const apiError = error.response.data;
+      serverError.message = apiError.message;
 
-      serverError.value = serverError.message;
-
-      if (serverError.errors.email) {
-        errors.value.email = serverError.errors.email;
+      if (apiError.errors.email) {
+        errors.email = apiError.errors.email;
       }
 
-      if (serverError.errors.password) {
-        errors.value.password = serverError.errors.password;
+      if (apiError.errors.password) {
+        errors.password = apiError.errors.password;
       }
     })
     .finally(() => {

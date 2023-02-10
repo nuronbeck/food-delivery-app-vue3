@@ -4,17 +4,17 @@
       <h1>Sign Up</h1>
 
       <BaseAlert
-        v-if="!!serverError"
-        :class="$style.alert"
+        v-if="!!serverError.message"
         variant="danger"
-        :message="serverError"
+        :class="$style.alert"
+        :message="serverError.message"
       />
 
       <BaseAlert
-        v-if="!!serverSuccess"
+        v-if="!!serverSuccess.message"
         :class="$style.alert"
         variant="success"
-        :message="serverSuccess"
+        :message="serverSuccess.message"
       />
 
       <BaseInput
@@ -79,15 +79,19 @@
 
 <script setup lang="ts">
 import { useAuthStore } from "@/stores/authStore";
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const authStore = useAuthStore();
 const isLoading = ref<boolean>(false);
-const showPassword = ref(false);
-const serverError = ref("");
-const serverSuccess = ref("");
+const showPassword = ref<boolean>(false);
+const serverError = reactive({
+  message: "",
+});
+const serverSuccess = reactive({
+  message: "",
+});
 
 const formData = ref({
   lastName: "",
@@ -97,7 +101,7 @@ const formData = ref({
   password: "",
 });
 
-const errors = ref({
+const errors = reactive({
   firstName: "",
   lastName: "",
   email: "",
@@ -114,6 +118,10 @@ const changeField = (
   value: string
 ) => {
   formData.value[propertyName] = value;
+
+  if (errors[propertyName]) {
+    errors[propertyName] = "";
+  }
 };
 
 const register = () => {
@@ -128,32 +136,33 @@ const register = () => {
       password: formData.value.password,
     })
     .then((response) => {
-      (serverError.value = ""), (serverSuccess.value = response.data.message);
+      serverError.message = "";
+      serverSuccess.message = response.data.message;
+
       router.push("/profile");
     })
     .catch((error) => {
-      const serverError = error.response.data;
+      const apiError = error.response.data;
+      serverError.message = apiError.message;
 
-      serverError.value = serverError.message;
-
-      if (serverError.errors.lastName) {
-        errors.value.lastName = serverError.errors.lastName;
+      if (apiError.errors.lastName) {
+        errors.lastName = apiError.errors.lastName;
       }
 
-      if (serverError.errors.firstName) {
-        errors.value.firstName = serverError.errors.firstName;
+      if (apiError.errors.firstName) {
+        errors.firstName = apiError.errors.firstName;
       }
 
-      if (serverError.errors.email) {
-        errors.value.email = serverError.errors.email;
+      if (apiError.errors.email) {
+        errors.email = apiError.errors.email;
       }
 
-      if (serverError.errors.phoneNumber) {
-        errors.value.phoneNumber = serverError.errors.phoneNumber;
+      if (apiError.errors.phoneNumber) {
+        errors.phoneNumber = apiError.errors.phoneNumber;
       }
 
-      if (serverError.errors.password) {
-        errors.value.password = serverError.errors.password;
+      if (apiError.errors.password) {
+        errors.password = apiError.errors.password;
       }
     })
     .finally(() => {
