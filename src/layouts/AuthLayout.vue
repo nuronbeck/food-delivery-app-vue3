@@ -1,62 +1,91 @@
 <template>
-  <div :class="$style.wrapper">
-    <div :class="$style.auth">
-      <RouterLink to="/" :class="$style.logo">
-        <img src="@/assets/header/main_logo.svg" />
-      </RouterLink>
+  <div :class="$style.layout">
+    <main :class="$style.main">
+      <header :class="$style.header">
+        <div class="container">
+          <RouterLink to="/" :class="$style.logo">
+            <img src="@/assets/header/main_logo.svg" />
+          </RouterLink>
+        </div>
+      </header>
 
-      <div>
-        <RouterView />
+      <div :class="$style.content">
+        <div :class="$style.contentForm">
+          <RouterView />
+        </div>
       </div>
-    </div>
+    </main>
 
-    <div :class="$style.layout">
-      <div :class="$style.title">
+    <aside :class="$style.aside">
+      <div :class="$style.asideContainer">
         <h3 :class="$style.carouselTitle">Strengthen the Guci`an bond</h3>
-      </div>
-      <div :class="$style.text">
-        <p>
+
+        <p :class="classnames('body1', $style.carouselText)">
           Connecting Alumni and students of Government engineering college
           Idukki to a next level
         </p>
+
+        <div :class="$style.bullet">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
-      <div :class="$style.circle">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
+    </aside>
   </div>
 </template>
 
+<script setup lang="ts">
+import classnames from "classnames";
+</script>
+
 <style module lang="scss">
-.wrapper {
+.layout {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
+  min-height: 100vh;
+
+  @include breakpoint("md") {
+    grid-template-columns: 1fr 55vw;
+  }
 }
-.auth {
-  position: relative;
+
+.header {
+  width: 100%;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  max-height: 80px;
+  background-color: white;
 }
+
 .logo {
   img {
-    margin: 15px 0 0 15px;
-    @include breakpoint("md") {
-      margin: 30px 0 0 30px;
-    }
+    width: 80px;
+    height: 40px;
   }
 }
-.layout {
-  background-color: $color-primary;
-  display: none;
+
+.main {
+  display: flex;
   flex-direction: column;
-  justify-content: end;
-  text-align: center;
-  height: 100vh;
-  @include breakpoint("md") {
-    display: flex;
-  }
+  max-height: 100vh;
+  overflow-y: scroll;
 }
+
+.content {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contentForm {
+  width: 100%;
+  padding: 0 15px;
+  max-width: 380px;
+}
+
 .title {
   font-family: $base-font;
   font-weight: 700;
@@ -66,32 +95,50 @@
   color: $color-white;
 }
 
-.text {
-  font-family: $base-font;
-  font-weight: 400;
-  font-size: 14px;
-  margin-bottom: 40px;
-  line-height: 20px;
-  letter-spacing: 0.1px;
-  color: $color-white;
+// Aside section
+.aside {
+  display: none;
+  background-color: $color-primary;
+
+  @include breakpoint("md") {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+}
+
+.asideContainer {
+  text-align: center;
+  max-width: 480px;
 }
 
 .carouselTitle {
   color: $color-white;
 }
 
-.circle {
+.carouselText {
+  color: $color-white;
+  margin-bottom: 40px !important;
+  line-height: 20px;
+}
+
+.bullet {
   display: flex;
   justify-content: center;
   margin-bottom: 60px;
 
   span {
+    cursor: pointer;
     width: 8px;
     height: 8px;
     margin: 0 5px;
     opacity: 0.3;
     border-radius: 50%;
     background-color: $color-white;
+
+    &:nth-child(1) {
+      opacity: 1;
+    }
   }
 }
 </style>
