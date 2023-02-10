@@ -73,7 +73,7 @@ const router = useRouter();
 const { isLoggedIn } = useAuthStore();
 
 const navigateLogin = () => {
-  router.push("/auth");
+  router.push("/auth/login");
 };
 </script>
 

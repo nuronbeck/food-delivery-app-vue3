@@ -1,5 +1,10 @@
 import client from "@/api";
-import type { IProductCategory, IProduct, ILoginPayload } from "@/types";
+import type {
+  IProductCategory,
+  IProduct,
+  ILoginPayload,
+  IRegisterPayload,
+} from "@/types";
 
 export default {
   getAuth: () => {
@@ -9,6 +14,16 @@ export default {
   },
   login: (payload: ILoginPayload) => {
     return client.post("/api/auth/login", payload).then((response: any) => {
+      return response;
+    });
+  },
+  register: (payload: IRegisterPayload) => {
+    return client.post("/api/auth/sign-up", payload).then((response: any) => {
+      return response;
+    });
+  },
+  reset: () => {
+    return client.post("/api/auth/password-change").then((response: any) => {
       return response;
     });
   },
