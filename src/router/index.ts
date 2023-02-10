@@ -14,6 +14,28 @@ const router = createRouter({
           path: "",
           component: () => import("@/pages/HomePage.vue"),
         },
+        {
+          path: "profile",
+          component: () => import("../pages/ProfilePage.vue"),
+          children: [
+            {
+              path: "",
+              component: () => import("../pages/Profile/AccountPage.vue"),
+            },
+            {
+              path: "address",
+              component: () => import("../pages/Profile/AccountPage.vue"),
+            },
+            {
+              path: "payment-methods",
+              component: () => import("../pages/Profile/AccountPage.vue"),
+            },
+            {
+              path: "security",
+              component: () => import("../pages/Profile/AccountPage.vue"),
+            },
+          ]
+        },
       ],
     },
     {
