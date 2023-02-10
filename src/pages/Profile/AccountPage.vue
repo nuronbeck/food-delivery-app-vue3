@@ -14,7 +14,7 @@
           <BaseButton
             v-if="isEditing"
             :class="$style.discardBtn"
-            @onClick="cancelEditing"
+            @on-click="cancelEditing"
           >
             Cancel
           </BaseButton>
@@ -22,7 +22,7 @@
           <BaseButton
             v-else
             variant="primary-outline"
-            @onClick="isEditing = true"
+            @on-click="isEditing = true"
           >
             Change
           </BaseButton>
@@ -35,7 +35,7 @@
             :value="formData.firstName"
             :error="errors.firstName"
             :disabled="!isEditing || isLoading"
-            @onInput="(value) => changeField('firstName', value)"
+            @on-input="(value) => changeField('firstName', value)"
           />
 
           <BaseInput
@@ -44,7 +44,7 @@
             :value="formData.lastName"
             :error="errors.lastName"
             :disabled="!isEditing || isLoading"
-            @onInput="(value) => changeField('lastName', value)"
+            @on-input="(value) => changeField('lastName', value)"
           />
 
           <BaseInput
@@ -53,7 +53,7 @@
             :value="formData.email"
             :error="errors.email"
             :disabled="!isEditing || isLoading"
-            @onInput="(value) => changeField('email', value)"
+            @on-input="(value) => changeField('email', value)"
           />
 
           <BaseInput
@@ -62,7 +62,7 @@
             :value="formData.phoneNumber"
             :error="errors.phoneNumber"
             :disabled="!isEditing || isLoading"
-            @onInput="(value) => changeField('phoneNumber', value)"
+            @on-input="(value) => changeField('phoneNumber', value)"
           />
         </div>
 
@@ -72,35 +72,35 @@
             <BaseCheckbox
               label="New deals"
               :checked="formData.emailNotifications.newDeals"
-              @onChange="(value) => changeField('newDeals', value)"
+              @on-change="(value) => changeField('newDeals', value)"
             />
 
             <BaseCheckbox
               label="New restaurants"
               :checked="formData.emailNotifications.newRestaurants"
-              @onChange="(value) => changeField('newRestaurants', value)"
+              @on-change="(value) => changeField('newRestaurants', value)"
             />
 
             <BaseCheckbox
               label="Order statuses"
               :checked="formData.emailNotifications.orderStatuses"
-              @onChange="(value) => changeField('orderStatuses', value)"
+              @on-change="(value) => changeField('orderStatuses', value)"
             />
 
             <BaseCheckbox
               label="Password changes"
               :checked="formData.emailNotifications.passwordChanges"
-              @onChange="(value) => changeField('passwordChanges', value)"
+              @on-change="(value) => changeField('passwordChanges', value)"
             />
             <BaseCheckbox
               label="Special offers"
               :checked="formData.emailNotifications.specialOffers"
-              @onChange="(value) => changeField('specialOffers', value)"
+              @on-change="(value) => changeField('specialOffers', value)"
             />
             <BaseCheckbox
               label="Newsletter"
               :checked="formData.emailNotifications.newsLetter"
-              @onChange="(value) => changeField('newsLetter', value)"
+              @on-change="(value) => changeField('newsLetter', value)"
             />
           </div>
         </div>
@@ -111,14 +111,14 @@
           <BaseButton
             :class="$style.dangerBtn"
             variant="danger-outline"
-            @onClick="logout"
+            @on-click="logout"
             >Log out</BaseButton
           >
           <div>
             <BaseButton
               v-if="isEditing"
-              :class="SaveBtn"
-              @onClick="saveChangeClick"
+              :class="$style.SaveBtn"
+              @on-click="saveChangeClick"
               :loading="isLoading"
               >Save changes</BaseButton
             >
@@ -143,7 +143,7 @@ export interface IAccountPage {
 
 const router = useRouter();
 const AuthStore = useAuthStore();
-const isLoading = ref(false);
+const isLoading = ref<boolean>(false);
 const isEditing = ref(false);
 
 const formDate = ref({
@@ -171,7 +171,10 @@ const cancelEditing = () => {
   (isEditing = false), initPage();
 };
 
-const changeField = (propertyName: "email" | "password", value: string) => {
+const changeField = (
+  propertyName: "firstName" | "lastName" | "email" | "phoneNumber",
+  value: string
+) => {
   formDate.value[propertyName] = value;
   formData.emailNotifications.value[propertyName] = value;
 };

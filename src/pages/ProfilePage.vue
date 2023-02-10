@@ -201,7 +201,7 @@ methods: {
     (isEditing = false), initPage();
   };
 
-  const changeField = (propertyName: "email" | "password", value: string) => {
+  const changeField = (propertyName: "firstName" | "lastName" | "email" | "phoneNumber", value: string) => {
     formDate.value[propertyName] = value;
     formData.emailNotifications.value[propertyName] = value;
   };
