@@ -22,7 +22,6 @@
             :class="$style.icon"
             icon="fa-brands fa-linkedin-in"
           />
-          <div :class="$style.text">© 2023 Food delivery kit.</div>
         </div>
 
         <div>
@@ -57,17 +56,23 @@
 
 <style module lang="scss">
 .footer {
-  min-height: 234px;
   color: $color-neutral-black;
   background-color: $color-neutral-black;
   padding: 48px 0;
 }
 .wrapper {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
+  @include breakpoint("md") {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
   div:nth-child(n + 2) {
     display: flex;
     flex-direction: column;
+    margin-bottom: 16px;
+    @include breakpoint("md") {
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -86,10 +91,6 @@
   &:hover {
     background-color: $color-white;
   }
-}
-.text {
-  color: $color-grey;
-  font-family: $base-font;
 }
 
 .header {
