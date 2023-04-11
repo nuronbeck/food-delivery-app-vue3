@@ -43,12 +43,16 @@ const router = createRouter({
       component: AuthLayout,
       children: [
         {
-          path: "",
+          path: "login",
           component: () => import("@/pages/Auth/LoginPage.vue"),
         },
         {
           path: "sign-up",
           component: () => import("@/pages/Auth/SignUpPage.vue"),
+        },
+        {
+          path: "forgot-password",
+          component: () => import("@/pages/Auth/ForgotPasswordPage.vue"),
         },
       ],
     },

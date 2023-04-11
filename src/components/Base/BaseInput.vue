@@ -21,7 +21,7 @@
           :class="$style.passwordToggle"
           @click="togglePasswordShow"
         >
-          <font-awesome-icon icon="fa-eye" />
+          <font-awesome-icon icon="fa-facebook-f" />
         </button>
 
         <button
