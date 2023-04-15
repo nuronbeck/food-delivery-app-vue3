@@ -10,6 +10,7 @@ import DealCard from "@/components/Cards/DealCard.vue";
 import CategoryCard from "@/components/Cards/CategoryCard.vue";
 import ProductCard from "@/components/Cards/ProductCard.vue";
 import SkeletonShimmer from "@/components/Loaders/SkeletonShimmer.vue";
+import ProfileSidemenu from "@/components/Layout/ProfileSidemenu.vue";
 
 // Base components
 import BaseAlert from "@/components/Base/BaseAlert.vue";
@@ -37,5 +38,6 @@ export default {
     app.component("DealCard", DealCard);
     app.component("CategoryCard", CategoryCard);
     app.component("ProductCard", ProductCard);
+    app.component("ProfileSidemenu", ProfileSidemenu);
   },
 };

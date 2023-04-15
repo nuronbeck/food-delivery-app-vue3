@@ -12,6 +12,7 @@ import DealCard from "@/components/Cards/DealCard.vue";
 import CategoryCard from "@/components/Cards/CategoryCard.vue";
 import ProductCard from "@/components/Cards/ProductCard.vue";
 import SkeletonShimmerVue from "@/components/Loaders/SkeletonShimmer.vue";
+import ProfileSidemenu from "@/components/Layout/ProfileSidemenu.vue";
 
 declare module "@vue/runtime-core" {
   export interface GlobalComponents {
@@ -29,5 +30,6 @@ declare module "@vue/runtime-core" {
     DealCard: typeof DealCard;
     CategoryCard: typeof CategoryCard;
     ProductCard: typeof ProductCard;
+    ProfileSidemenu: typeof ProfileSidemenu;
   }
 }
